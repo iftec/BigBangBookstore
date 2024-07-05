@@ -74,11 +74,19 @@ WSGI_APPLICATION = 'bigbangbookstore.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Replace the DATABASES section of your settings.py with this
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': config('DBDATABASE'),
+    'USER': config('DBUSER'),
+    'PASSWORD': config('DBPASSWORD'),
+    'HOST': config('DBHOST'),
+    'PORT': config('DBPORT', 5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
 }
 
 
