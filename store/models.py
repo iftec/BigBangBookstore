@@ -26,6 +26,7 @@ class Product(models.Model):
                                    null=True)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     image = models.ImageField(upload_to='uploads/products/')
+    author = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
