@@ -1,26 +1,32 @@
 {% extends "base.html" %}
 
-{% load static %}
-
-{% block extra_title %}
-- Books
-{% endblock %}
-
 {% block page_header %}
-    <div class="container header-container">
+    <div class="container-fluid fixed-height-header product-header-bg">
         <div class="row">
-            <div class="col"><h1 class="text-primary">Header Menu</h1></div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block content %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col text-center mt-3">
-                    <h2 class="logo-font">Products</h2>
-                </div>
+            <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
+                <h2 class="mt-auto">Highlight header</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum.</p>
+            </div>
+            <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
             </div>
         </div>
-{% endblock %}
+    </div>
+{% endblock page_header %}
+
+{% block content %}
+    <div class="container-fluid d-flex flex-wrap justify-content-around p-5">
+        {% for product in products %}
+            <div class="card mb-5" style="width: 18rem;">
+                <img src="{{product.image}}" class="card-img-top" alt="Book cover image">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">Author: {{product.author}}</p>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+{% endblock content %}
 
