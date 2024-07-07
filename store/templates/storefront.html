@@ -4,10 +4,14 @@
     <div class="container-fluid fixed-height-header product-header-bg">
         <div class="row">
             <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
-                <h2 class="mt-auto">Highlight header</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum.</p>
+                <h2 class="mt-auto">Unlock the Universe.</h2>
+                <p>Welcome to The Big Bang Bookstore. Explore our collection of books on Space, the Big Bang, and Quantum Physics. Discover the wonders of the cosmos!</p>
             </div>
-            <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
+            <div class="col-6 text-white d-flex flex-column align-items-end fixed-height-header">
+                <div class="input-group mb-3 mt-auto search-box">
+                    <input type="text" class="form-control rounded-pill-start" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary btn-dark rounded-pill-end text-white" type="button" id="button-addon2">Search</button>
+                </div>
             </div>
         </div>
     </div>
@@ -17,11 +21,11 @@
     <div class="container-fluid d-flex flex-wrap justify-content-around p-5">
         {% for product in products %}
             <div class="card mb-5" style="width: 18rem;">
-                <img src="{{product.image}}" class="card-img-top" alt="Book cover image">
+                <img src="{{product.image.url}}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image">
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text">{{product.description}}</p>
-                    <p class="card-text">Author: {{product.author}}</p>
+                    <p class="card-text"><strong>Author:</strong> {{product.author}}</p>
                     <a href="#" class="btn btn-primary">Add to cart</a>
                 </div>
             </div>

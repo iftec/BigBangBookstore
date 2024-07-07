@@ -9,3 +9,38 @@
     background-size: cover;
     background-position: center;
 }
+
+.book-cover {
+    filter: drop-shadow(10px 14px 10px #6f6f6f);
+    border-radius: 5%;
+    width: 60% !important;
+}
+
+
+.search-box {
+    max-width: 60% !important;
+}
+
+.rounded-pill-start{
+    border-top-left-radius:75px !important;
+    border-bottom-left-radius: 75px !important;
+    border: none !important;
+    outline: 2px solid #000000;
+}
+
+.rounded-pill-end{
+    border-top-right-radius:75px !important;
+    border-bottom-right-radius: 75px !important;
+    border: none !important;
+    outline: 2px solid #000000;
+}
+
+
+/* Overide bootstraps btn-dark style to make it black by default */
+.btn-dark {
+    background-color: black !important;
+}
+
+.btn-dark:hover {
+    background-color: #6f6f6f !important;
+}
