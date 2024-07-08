@@ -21,26 +21,21 @@
     max-width: 60% !important;
 }
 
-.rounded-pill-start{
+.rounded-pill-start {
     border-top-left-radius:75px !important;
     border-bottom-left-radius: 75px !important;
     border: none !important;
-    outline: 2px solid #000000;
+    outline: 1px solid #626262;
 }
 
-.rounded-pill-end{
+.rounded-pill-end {
     border-top-right-radius:75px !important;
     border-bottom-right-radius: 75px !important;
     border: none !important;
-    outline: 2px solid #000000;
+    outline: 1px solid #626262;
 }
 
 
-/* Overide bootstraps btn-dark style to make it black by default */
-.btn-dark {
-    background-color: black !important;
-}
-
-.btn-dark:hover {
-    background-color: #6f6f6f !important;
+.filter-btn-margin {
+    margin-left: 20px !important;
 }
