@@ -32,6 +32,16 @@
                 </div>
                 <div class="btn-group filter-btn-margin">
                     <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Category 1</a></li>
+                        <li><a class="dropdown-item" href="#">Category 2</a></li>
+                        <li><a class="dropdown-item" href="#">Category 3</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group filter-btn-margin">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Price
                     </button>
                     <ul class="dropdown-menu">
@@ -56,7 +66,8 @@
                         <h5 class="card-title">{{product.name}}</h5>
                         <p class="card-text">{{product.description}}</p>
                         <p class="card-text"><strong>Author:</strong> {{product.author}}</p>
-                        <a href="#" class="btn btn-primary">Add to cart</a>
+                        <a href="#" class="btn btn-primary d-inline">Add to cart</a>
+                        <a href="{% url 'store:product-detail' product.pk %}" class="btn btn-success d-inline">More</a>
                     </div>
                 </div>
             {% endfor %}

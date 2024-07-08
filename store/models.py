@@ -21,12 +21,13 @@ class Customer(models.Model):
 
 # Base product details for each book
 class Product(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=250, default='', blank=True,
+    name = models.CharField(max_length=100)
+    description = models.TextField(default='', blank=True,
                                    null=True)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     image = models.ImageField(upload_to='uploads/products/')
     author = models.CharField(max_length=100)
+    category = models.ManyToManyField('Category', related_name='products')
 
     def __str__(self):
         return self.name
@@ -55,3 +56,13 @@ class Order(models.Model):
 
     def __str__(self):
         return self.product
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
