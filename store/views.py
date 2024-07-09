@@ -3,6 +3,7 @@ from django.views import generic
 from .models import Product
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
+from .forms import UserLoginForm
 
 
 class StoreFront(generic.ListView):
@@ -20,3 +21,4 @@ class ProductDetails(generic.DetailView):
 
 class AccountLogin(LoginView):
     template_name = "login.html"
+    form = UserLoginForm
