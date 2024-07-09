@@ -65,7 +65,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{product.name}}</h5>
                         <p class="card-text">{{ product.description|truncatechars:300 }}</p>
-
                         <p class="card-text"><strong>Author:</strong> {{product.author}}</p>
                         <a href="#" class="btn btn-primary d-inline">Add to cart</a>
                         <a href="{% url 'store:product-detail' product.pk %}" class="btn btn-success d-inline">More</a>

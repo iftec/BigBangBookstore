@@ -29,8 +29,19 @@
     <title>Big Bang Bookstore {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid bg-white fixed-top">
-      <h1 class="text-black text-left pb-2 mb-0 border-bottom border-dark-subtle">The Big <strong>BANG</strong> Bookstore</h1>
+    <header class="container-fluid bg-white fixed-top d-flex justify-content-between border-bottom border-dark-subtle">
+      <h1 class="text-black text-left pb-2 mb-0">The Big <strong>BANG</strong> Bookstore</h1>
+      <nav class="d-flex align-middle p-1">
+        {% if user.is_authenticated %}
+          <!-- Use a form to change the logout from a GET to a POST request -->
+          <form method="post" action="{% url 'store:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-dark m-1">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'store:login' %}"><button type="button" class="btn btn-dark m-1">Login</button></a>
+        {% endif %}
+      </nav>
     </header>
 
     
