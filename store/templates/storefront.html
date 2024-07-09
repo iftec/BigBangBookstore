@@ -52,10 +52,12 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 text-white d-flex flex-column align-items-end mb-2 mt-4">
-                <div class="input-group mb-3 mt-auto search-box">
-                    <input type="text" class="form-control rounded-pill-start" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
-                    <button class="btn btn-dark rounded-pill-end text-white" type="button" id="button-addon2">Search</button>
-                </div>
+                <form method="GET" action=".">
+                    <div class="input-group mb-3 mt-auto search-box">
+                        <input type="text" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
+                        <button class="btn btn-dark rounded-pill-end text-white" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row d-flex flex-wrap justify-content-around">
