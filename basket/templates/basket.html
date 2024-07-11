@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Your Basket</h1>
+    <ul>
+        {% for item in items %}
+            <li>{{ item.quantity }} x {{ item.product.name }} - £{{ item.total_price }}
+                <form method="post" action="{% url 'basket:remove-from-basket' item.product.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'store:storefront' %}">Continue Shopping</a>
+{% endblock content %}
