@@ -1,18 +1,15 @@
-from typing import Any
-from django.db.models.query import QuerySet
-from django.shortcuts import render
 from django.views import generic
 from .models import Product, Category
-from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm
 from django.db.models import Q
+from basket.forms import AddToBasketForm
 
 
 class StoreFront(generic.ListView):
     template_name = "storefront.html"
     context_object_name = "products"
-    paginate_by = 12
+    paginate_by = 15
 
     # Define search function
     def get_queryset(self):
@@ -61,6 +58,7 @@ class StoreFront(generic.ListView):
         context['category_filter'] = self.request.GET.get('category', '')
         context['author_filter'] = self.request.GET.get('author', '')
         context['price_filter'] = self.request.GET.get('price', '')
+        context['form'] = AddToBasketForm()
 
         return context
 
@@ -69,6 +67,11 @@ class ProductDetails(generic.DetailView):
     template_name = "productdetail.html"
     model = Product
     context_object_name = "product"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = AddToBasketForm()
+        return context
 
 
 class AccountLogin(LoginView):
