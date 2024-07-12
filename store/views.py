@@ -7,6 +7,8 @@ from basket.forms import AddToBasketForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth import logout
+from .forms import UserLoginForm
 
 
 class StoreFront(generic.ListView):
@@ -62,6 +64,7 @@ class StoreFront(generic.ListView):
         context['author_filter'] = self.request.GET.get('author', '')
         context['price_filter'] = self.request.GET.get('price', '')
         context['form'] = AddToBasketForm()
+        context['login_form'] = UserLoginForm()
 
         return context
 
@@ -94,9 +97,15 @@ class AccountRegister(generic.CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Registration successful. You can now log in.')
+            messages.success(
+                request, 'Registration successful. You can now log in.')
             return redirect(self.get_success_url())
         return render(request, self.template_name, {'form': form})
 
     def get_success_url(self):
         return reverse("store:login")
+
+
+def AccountLogOut(request):
+    logout(request)
+    return redirect('/')

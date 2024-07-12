@@ -33,15 +33,37 @@
       <h1 class="text-black text-left pb-2 mb-0">The Big <strong>BANG</strong> Bookstore</h1>
       <nav class="d-flex align-middle p-1">
         <a href="{% url 'basket:basket' %}" aria-label="Basket"><button type="button" class="btn btn-dark m-1"><i class="fa-solid fa-cart-shopping"></i></button></a>
-        {% if user.is_authenticated %}
-          <!-- Use a form to change the logout from a GET to a POST request -->
-          <form method="post" action="{% url 'store:logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-dark m-1">Logout</button>
-          </form>
-        {% else %}
-          <a href="{% url 'store:login' %}"><button type="button" class="btn btn-dark m-1">Login</button></a>
-        {% endif %}
+        <div class="dropdown">
+          <button class="btn btn-dark m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+          </button>
+          <!-- Create dropdown menu depending on if user is logged in or not -->
+          <ul class="dropdown-menu dropdown-menu-width container px-2">
+            {% if user.is_authenticated %}
+              <li><a class="dropdown-item" href="#">My Account</a></li>
+              <li><a class="dropdown-item" href="{% url 'store:logout' %}">Logout</a></li>
+            {% else %}
+              <li>
+              <!-- Create login form to handle login process and send user back to current page -->
+              <form method="POST" action="{% url 'store:login'%}?next={{ request.path }}">
+              {% csrf_token %}
+                <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                      <label for="floatingInput">Username</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                      <label for="floatingPassword">Password</label>
+                  </div>    
+              <div class="d-flex justify-content-around">
+                <button type="submit" class="btn btn-outline-dark d-inline">Login</button>
+                <a class="text-decoration-none link-dark" href="{% url 'store:signup' %}"><button type="button" class="btn btn-outline-dark d-inline">Register</button></a>
+              </div>
+              </form>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
       </nav>
     </header>
 
