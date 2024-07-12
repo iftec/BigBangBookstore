@@ -10,4 +10,5 @@ urlpatterns = [
          name='product-detail'),
     path('login/', views.AccountLogin.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', views.AccountRegister.as_view(), name='signup'),
 ]

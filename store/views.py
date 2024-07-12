@@ -1,9 +1,12 @@
 from django.views import generic
 from .models import Product, Category
 from django.contrib.auth.views import LoginView
-from .forms import UserLoginForm
+from .forms import UserLoginForm, UserSignUpForm
 from django.db.models import Q
 from basket.forms import AddToBasketForm
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 
 class StoreFront(generic.ListView):
@@ -77,3 +80,23 @@ class ProductDetails(generic.DetailView):
 class AccountLogin(LoginView):
     template_name = "login.html"
     form = UserLoginForm
+
+
+class AccountRegister(generic.CreateView):
+    form_class = UserSignUpForm
+    template_name = 'signup.html'
+
+    def get(self, request):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Registration successful. You can now log in.')
+            return redirect(self.get_success_url())
+        return render(request, self.template_name, {'form': form})
+
+    def get_success_url(self):
+        return reverse("store:login")
