@@ -3,16 +3,25 @@
 {% load static %}
 
 {% block content %}
-    <h1>Your Basket</h1>
-    <ul>
-        {% for item in items %}
-            <li>{{ item.quantity }} x {{ item.product.name }} - £{{ item.total_price }}
-                <form method="post" action="{% url 'basket:remove-from-basket' item.product.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Remove</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'store:storefront' %}">Continue Shopping</a>
+    <div class="container-fluid mt-4">
+        <h1>Your Basket</h1>
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item.quantity }} x {{ item.product.name }} - £{{ item.line_cost }}
+                    <form method="post" action="{% url 'basket:remove-from-basket' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'store:storefront' %}">Continue Shopping</a>
+    </div>
 {% endblock content %}
