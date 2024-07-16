@@ -3,8 +3,16 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid mt-4">
-        <h1>Your Basket</h1>
+    <div class="container-fluid mt-4 ps-4">
+        <div class="row justify-content-end">
+            <div class="col-4">
+                <h2 class="col mx-auto text-center mb-4">Your Basket ({{item_count}} items)</h2>
+            </div>
+            <div class="col-4 text-end pe-4">
+                <a href="{% url 'store:storefront' %}"><button type="button" class="btn btn-dark ms-auto"><< Continue shopping</button></a>
+            </div>
+        </div>
+        
         {% if messages %}
             <div class="alert alert-info">
                 {% for message in messages %}
@@ -12,16 +20,37 @@
                 {% endfor %}
             </div>
         {% endif %}
-        <ul>
-            {% for item in items %}
-                <li>{{ item.quantity }} x {{ item.product.name }} - £{{ item.line_cost }}
-                    <form method="post" action="{% url 'basket:remove-from-basket' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Remove</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'store:storefront' %}">Continue Shopping</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">Book</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr class="align-middle">
+                    <td><img src="{{item.product.image.url}}" class="img-responsive img-basket"></td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                            <form method="post" action="{% url 'basket:remove-from-basket' item.id %}">
+                                {% csrf_token %}
+                                <div class="align-middle d-flex flex-row no-wrap">
+                                    £{{ item.line_cost }}
+                                    <button type="submit" class="btn bg-body-secondary px-2 py-0 ms-3 me-0"><i class="fa-solid fa-xmark fa-sm"></i></button>
+                                </div>
+                            </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not items %}
+            <h3 class="text-center mt-5">Your basket is empty, go buy some books!</h3>
+        {% endif %}
     </div>
 {% endblock content %}

@@ -26,8 +26,10 @@ class BasketView(ListView):
                               'line_cost': line_cost, 'id': item.id})
                 # Update the total basket price
                 total_price += total_price + line_cost
+            item_count = len(items)
             return render(request, 'basket.html',
-                          {'items': items, 'total_price': total_price})
+                          {'items': items, 'total_price': total_price,
+                           'item_count': item_count})
         else:
             # Get or create a session basket
             basket = request.session.get('basket', {})
@@ -40,11 +42,14 @@ class BasketView(ListView):
                 product = get_object_or_404(Product, id=product_id)
                 # Add each item to the items list
                 items.append({'product': product, 'quantity': quantity,
-                              'line_cost': quantity * product.price})
+                              'line_cost': quantity * product.price,
+                              'id': product_id})
                 # Update the basket cost
                 total_price += quantity * total_price
+            item_count = len(items)
             return render(request, 'basket.html',
-                          {'items': items, 'total_price': total_price})
+                          {'items': items, 'total_price': total_price,
+                           'item_count': item_count})
 
 
 class AddToBasketView(View):
@@ -109,7 +114,9 @@ class RemoveFromBasketView(View):
             # Get the basket from the session data
             basket = request.session.get('basket', {})
             # Get the id and check if it exists and delete
-            product_id = str(kwargs['id'])
+            product_id = str(kwargs['item_id'])
+            item = get_object_or_404(Product, id=product_id)
+            item_name = item.name
             if product_id in basket:
                 del basket[product_id]
                 messages.success(
