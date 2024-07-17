@@ -103,7 +103,7 @@
                         <form method="post" action="{% url 'basket:add-to-basket' product.id %}">
                             {% csrf_token %}
                             {{form.as_p}}
-                            <button class="btn btn-primary d-inline" type="submit">Buy Now</button>
+                            <button class="btn btn-primary d-inline" type="submit">Buy</button>
                             <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn btn-success d-inline" type="button">More</button></a>
                         </form>
                     </div>

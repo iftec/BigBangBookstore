@@ -4,10 +4,13 @@ from store.models import Product
 from .models import Basket, BasketItem
 from .forms import AddToBasketForm
 from django.contrib import messages
+from django.http import JsonResponse
 
 
 class BasketView(ListView):
     def get(self, request, *args, **kwargs):
+        update_qty_item = self.request.GET.get('item', '')
+        updated_qty = self.request.GET.get('qty', '')
         if request.user.is_authenticated:
             # Get users basket or create a new one if dosen't exist
             # and flag if it's a new basket
@@ -16,40 +19,46 @@ class BasketView(ListView):
             # Define variables
             items = []
             total_price = 0
+            total_items = 0
             # Loop through any items in the basket
             # and get product info from database
             for item in basket_items:
                 product = get_object_or_404(Product, id=item.product.id)
                 line_cost = item.quantity * product.price
+                if update_qty_item == str(item.id):
+                    item.quantity = updated_qty
                 # Add each item to the items list
                 items.append({'product': product, 'quantity': item.quantity,
                               'line_cost': line_cost, 'id': item.id})
                 # Update the total basket price
                 total_price += total_price + line_cost
-            item_count = len(items)
+                total_items += item.quantity
             return render(request, 'basket.html',
                           {'items': items, 'total_price': total_price,
-                           'item_count': item_count})
+                           'item_count': total_items})
         else:
             # Get or create a session basket
             basket = request.session.get('basket', {})
             # Create an items list & set initial basket cost
             items = []
             total_price = 0
+            total_items = 0
             # Loop through any items in the basket
             # and get the product info from the database
             for product_id, quantity, in basket.items():
                 product = get_object_or_404(Product, id=product_id)
+                if update_qty_item == product_id:
+                    quantity = int(updated_qty)
                 # Add each item to the items list
                 items.append({'product': product, 'quantity': quantity,
                               'line_cost': quantity * product.price,
                               'id': product_id})
                 # Update the basket cost
                 total_price += quantity * total_price
-            item_count = len(items)
+                total_items += quantity
             return render(request, 'basket.html',
                           {'items': items, 'total_price': total_price,
-                           'item_count': item_count})
+                           'item_count': total_items})
 
 
 class AddToBasketView(View):
@@ -127,3 +136,19 @@ class RemoveFromBasketView(View):
             # Update the session basket
             request.session['basket'] = basket
         return redirect('basket:basket')
+
+
+def UpdateBasket(request):
+    update_qty_item = request.GET.get('item', '')
+    updated_qty = request.GET.get('qty', '')
+    if request.user.is_authenticated:
+        item = get_object_or_404(BasketItem, id=update_qty_item,
+                                 basket__user=request.user)
+        item.quantity = int(updated_qty)
+        item.save()
+    else:
+        basket = request.session['basket']
+        if update_qty_item in basket:
+            basket[update_qty_item] = int(updated_qty)
+        request.session['basket'] = basket
+    return redirect('basket:basket')

@@ -32,7 +32,7 @@
                         <form method="post" action="{% url 'basket:add-to-basket' product.id %}">
                         {% csrf_token %}
                         {{form.as_p}}
-                            <button class="btn btn-primary btn-rounded" type="submit">Buy Now</button>
+                            <button class="btn btn-primary btn-rounded" type="submit">Buy</button>
                         </form>
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h5 class="box-title mt-4">Categories</h5>

@@ -85,3 +85,7 @@
     max-width: 100px !important;
     min-width: 40px;
 }
+
+.inputQty-width {
+    width: 40px !important;
+}

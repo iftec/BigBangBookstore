@@ -24,18 +24,30 @@
             <thead>
                 <tr>
                     <th scope="col" colspan="2">Book</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
+                    <th scope="col" class="text-center">Price</th>
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-center">Total</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in items %}
                 <tr class="align-middle">
                     <td><img src="{{item.product.image.url}}" class="img-responsive img-basket"></td>
-                    <td>{{ item.product.name }}</td>
-                    <td>{{ item.product.price }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.name }} by {{ item.product.author }}</td>
+                    <td>£{{ item.product.price }}</td>
+                    <td>
+                        <div class="align-middle d-flex flex-row no-wrap">
+                        <button type="button"
+                            class="btn {% if item.quantity == 1 %}bg-secondary{% else %}bg-body-secondary{% endif%} px-2 py-0 me-2 me-0 border-0"
+                            id="decreaseQty" {% if item.quantity == 1 %}disabled{% endif%}
+                            onclick="decreaseQty({{ item.id }}, {{ item.quantity }})">
+                            <i class="fa-solid fa-caret-left fa-sm"></i>
+                        </button>
+                        <label for="disabledTextInput" class="form-label visually-hidden">Quantity</label>
+                        <input type="text" id="id_qtyInput" class="form-control inputQty-width" value="{{ item.quantity }}" onchange="changeQty({{ item.id }}, this.value)">
+                        <button type="button" class="btn bg-body-secondary px-2 py-0 ms-2 me-0" id="increaseQty" onclick="increaseQty({{ item.id }}, {{ item.quantity }})"><i class="fa-solid fa-caret-right fa-sm"></i></button>
+                        </div>
+                    </td>
                     <td>
                             <form method="post" action="{% url 'basket:remove-from-basket' item.id %}">
                                 {% csrf_token %}
