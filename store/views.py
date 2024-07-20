@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Product, Category
+from .models import Product, Category, Customer
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserSignUpForm
 from django.db.models import Q
@@ -7,8 +7,7 @@ from basket.forms import AddToBasketForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
-from django.contrib.auth import logout
-from .forms import UserLoginForm
+from django.contrib.auth import logout, login
 
 
 class StoreFront(generic.ListView):
@@ -90,16 +89,38 @@ class AccountRegister(generic.CreateView):
     template_name = 'signup.html'
 
     def get(self, request):
-        form = self.form_class()
-        return render(request, self.template_name, {'form': form})
+        if request.user.is_authenticated:
+            return redirect('')
+        else:
+            form = self.form_class()
+            return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
-            form.save()
+            user = User.objects.create(
+                username=form.cleaned_data['username'],
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password1'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name']
+            )
+            Customer.objects.create(
+                user=user,
+                phone=form.cleaned_data['phone'],
+                house=form.cleaned_data['house'],
+                street=form.cleaned_data['street'],
+                address_2=form.cleaned_data['address_2'],
+                city=form.cleaned_data['city'],
+                postcode=form.cleaned_data['postcode']
+            )
             messages.success(
                 request, 'Registration successful. You can now log in.')
-            return redirect(self.get_success_url())
+            login(request, user)
+            return redirect('/')
+        else:
+            messages.error(
+                request, 'There was an issue registering. Please try again')
         return render(request, self.template_name, {'form': form})
 
     def get_success_url(self):

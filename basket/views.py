@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, View
-from store.models import Product
+from store.models import Product, Order, OrderItems
 from .models import Basket, BasketItem
 from .forms import AddToBasketForm
 from django.contrib import messages
@@ -14,7 +14,9 @@ class BasketView(ListView):
         if request.user.is_authenticated:
             # Get users basket or create a new one if dosen't exist
             # and flag if it's a new basket
-            basket, new_basket = Basket.objects.get_or_create(user=request.user)
+            basket, new_basket = Basket.objects.get_or_create(
+                user=request.user
+                )
             basket_items = BasketItem.objects.filter(basket=basket)
             # Define variables
             items = []

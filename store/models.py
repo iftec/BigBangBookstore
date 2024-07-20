@@ -1,14 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 import datetime
 
 
 # Base customer details
 class Customer(models.Model):
-    first_name = models.CharField(max_length=56)
-    last_name = models.CharField(max_length=56)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=14)
-    email = models.EmailField(max_length=100)
     house = models.CharField(max_length=50)
     street = models.CharField(max_length=50)
     address_2 = models.CharField(max_length=50, blank=True, null=True)
@@ -16,7 +15,7 @@ class Customer(models.Model):
     postcode = models.CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
 
 
 # Base product details for each book
@@ -42,20 +41,28 @@ class Order(models.Model):
         "Shipped": "Shipped",
         "Cancelled": "Cancelled",
     }
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
     ship_house = models.CharField(max_length=50)
     ship_street = models.CharField(max_length=50)
     ship_address_2 = models.CharField(max_length=50, blank=True, null=True)
     ship_city = models.CharField(max_length=50)
     ship_postcode = models.CharField(max_length=20)
     date = models.DateField(default=datetime.datetime.today)
+    updated_on = models.DateField(auto_now=True)
     status = models.CharField(max_length=10, default="Open",
                               choices=ORDER_STATUS)
 
     def __str__(self):
         return self.product
+
+
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f'{self.item} - {self.order}'
 
 
 class Category(models.Model):
