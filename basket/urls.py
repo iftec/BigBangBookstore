@@ -10,4 +10,8 @@ urlpatterns = [
      path('remove/<int:item_id>/', views.RemoveFromBasketView.as_view(),
           name='remove-from-basket'),
      path('update_basket/', views.UpdateBasket, name="update-basket"),
+     path('customer_order/<int:basket_id>', views.CreateCustomerOrder,
+          name='create-customer-order'),
+     path('guest_order/', views.CreateGuestOrder,
+          name='create-guest-order')
 ]

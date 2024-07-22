@@ -90,7 +90,7 @@ class AccountRegister(generic.CreateView):
 
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('')
+            return redirect('/')
         else:
             form = self.form_class()
             return render(request, self.template_name, {'form': form})
@@ -130,3 +130,4 @@ class AccountRegister(generic.CreateView):
 def AccountLogOut(request):
     logout(request)
     return redirect('/')
+

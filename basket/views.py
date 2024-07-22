@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, View
-from store.models import Product, Order, OrderItems
+from store.models import Product, Order, OrderItem
 from .models import Basket, BasketItem
 from .forms import AddToBasketForm
 from django.contrib import messages
@@ -37,7 +37,7 @@ class BasketView(ListView):
                 total_items += item.quantity
             return render(request, 'basket.html',
                           {'items': items, 'total_price': total_price,
-                           'item_count': total_items})
+                           'item_count': total_items, 'basket': basket})
         else:
             # Get or create a session basket
             basket = request.session.get('basket', {})
@@ -47,17 +47,20 @@ class BasketView(ListView):
             total_items = 0
             # Loop through any items in the basket
             # and get the product info from the database
-            for product_id, quantity, in basket.items():
-                product = get_object_or_404(Product, id=product_id)
-                if update_qty_item == product_id:
-                    quantity = int(updated_qty)
-                # Add each item to the items list
-                items.append({'product': product, 'quantity': quantity,
-                              'line_cost': quantity * product.price,
-                              'id': product_id})
-                # Update the basket cost
-                total_price += quantity * total_price
-                total_items += quantity
+            if basket is None:
+                pass
+            else:
+                for product_id, quantity, in basket.items():
+                    product = get_object_or_404(Product, id=product_id)
+                    if update_qty_item == product_id:
+                        quantity = int(updated_qty)
+                    # Add each item to the items list
+                    items.append({'product': product, 'quantity': quantity,
+                                  'line_cost': quantity * product.price,
+                                  'id': product_id})
+                    # Update the basket cost
+                    total_price += quantity * total_price
+                    total_items += quantity
             return render(request, 'basket.html',
                           {'items': items, 'total_price': total_price,
                            'item_count': total_items})

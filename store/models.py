@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from shortuuidfield import ShortUUIDField
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 import datetime
 
 
@@ -41,28 +43,38 @@ class Order(models.Model):
         "Shipped": "Shipped",
         "Cancelled": "Cancelled",
     }
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
     ship_house = models.CharField(max_length=50)
     ship_street = models.CharField(max_length=50)
     ship_address_2 = models.CharField(max_length=50, blank=True, null=True)
     ship_city = models.CharField(max_length=50)
     ship_postcode = models.CharField(max_length=20)
-    date = models.DateField(default=datetime.datetime.today)
+    date = models.DateField(auto_now_add=True)
     updated_on = models.DateField(auto_now=True)
     status = models.CharField(max_length=10, default="Open",
-                              choices=ORDER_STATUS)
+                              choices=ORDER_STATUS),
+    uuid = ShortUUIDField(max_length=4)
+    reference = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
-        return self.product
+        return f'{self.date} {self.customer}'
+
+# Add signal to update the reference just before save
+@receiver(pre_save, sender=Order)
+def set_refernce(sender, instance, **kwargs):
+    if not instance.reference:
+        date_str = str(instance.date)
+        date_ref = date_str.replace('-', '')
+        instance.reference = f"{date_ref}-{instance.uuid[:4]}"
 
 
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return f'{self.item} - {self.order}'
+        return f'{self.order} - {self.item}'
 
 
 class Category(models.Model):

@@ -14,7 +14,13 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-2 text-center mx-auto">
-                <button type="button" class="btn btn-dark">Checkout</button>
+                <a href="
+                    {% if user.is_authenticated %}
+                        {% url 'checkout:checkout' basket.pk %}
+                    {% else %}
+                        {% url 'checkout:guest-checkout' %}
+                    {% endif %}
+                        "><button type="button" class="btn btn-dark">Checkout</button></a>
             </div>
         </div>
         
