@@ -4,7 +4,7 @@ from store.models import Product, Order, OrderItem
 from .models import Basket, BasketItem
 from .forms import AddToBasketForm
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 
 class BasketView(ListView):
@@ -157,3 +157,34 @@ def UpdateBasket(request):
             basket[update_qty_item] = int(updated_qty)
         request.session['basket'] = basket
     return redirect('basket:basket')
+
+
+def CreateOrder(request):
+    if request.user.is_authenticated:
+        # Get the customers profile
+        customer_profile = request.user.customer
+        # Create the customers order and add items
+        order = Order.objects.create(customer=customer_profile)
+        basket = get_object_or_404(Basket, user=request.user)
+        basket_items = BasketItem.objects.filter(basket=basket)
+        for item in basket_items:
+            OrderItem.objects.create(
+                order=order,
+                item=item.product,
+                quantity=item.quantity
+            )
+        # Delete the basket
+        basket.delete()
+        return redirect('basket:basket')
+    else:
+        order = Order.objects.create(customer=None)
+        basket = request.session['basket']
+        for product_id, quantity in basket.items():
+            product = get_object_or_404(Product, id=product_id)
+            OrderItem.objects.create(
+                order=order,
+                item=product,
+                quantity=quantity
+            )
+        del request.session['basket']
+        return redirect('basket:basket')

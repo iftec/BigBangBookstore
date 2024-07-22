@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from shortuuidfield import ShortUUIDField
+import uuid
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-import datetime
+from django.utils import timezone
 
 
 # Base customer details
@@ -43,21 +43,23 @@ class Order(models.Model):
         "Shipped": "Shipped",
         "Cancelled": "Cancelled",
     }
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
+                                 blank=True, null=True)
     ship_house = models.CharField(max_length=50)
     ship_street = models.CharField(max_length=50)
     ship_address_2 = models.CharField(max_length=50, blank=True, null=True)
     ship_city = models.CharField(max_length=50)
     ship_postcode = models.CharField(max_length=20)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=timezone.now)
     updated_on = models.DateField(auto_now=True)
     status = models.CharField(max_length=10, default="Open",
-                              choices=ORDER_STATUS),
-    uuid = ShortUUIDField(max_length=4)
-    reference = models.CharField(max_length=15, null=True, blank=True)
+                              choices=ORDER_STATUS)
+    uuid = models.CharField(default=uuid.uuid4, editable=False)
+    reference = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return f'{self.date} {self.customer}'
+
 
 # Add signal to update the reference just before save
 @receiver(pre_save, sender=Order)
@@ -65,7 +67,9 @@ def set_refernce(sender, instance, **kwargs):
     if not instance.reference:
         date_str = str(instance.date)
         date_ref = date_str.replace('-', '')
-        instance.reference = f"{date_ref}-{instance.uuid[:4]}"
+        date_ref = date_ref[:8]
+        print(instance.uuid)
+        instance.reference = f"{date_ref}-{str(instance.uuid)[:4]}"
 
 
 class OrderItem(models.Model):
