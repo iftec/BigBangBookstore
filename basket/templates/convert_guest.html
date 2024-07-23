@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h2>Why not keep track of your orders and make it easier to checkout next time?</h2>?
+    <h3>Sign up for an account now.<h3>
+    <form method="post" action="{% url 'basket:convert-guest' order_id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-dark mt-3" type="submit">Register</button>
+    </form>
+
+{% endblock content %}

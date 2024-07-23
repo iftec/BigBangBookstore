@@ -22,6 +22,7 @@ class UserSignUpForm(UserCreationForm):
     address_2 = forms.CharField(required=False)
     city = forms.CharField()
     postcode = forms.CharField()
+    order_id = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     class Meta:
         model = User

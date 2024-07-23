@@ -3,133 +3,134 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container-fluid fixed-height-header product-header-bg d-flex">
-        <div class="row align-items-center">
-            <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
-                <h2 class="mt-auto">Unlock the Universe.</h2>
-                <p>Welcome to The Big Bang Bookstore. Explore our collection of books on Space, the Big Bang, and Quantum Physics. Discover the wonders of the cosmos!</p>
-            </div>
-            <div class="col-6 text-white">
-            </div>
+<div class="container-fluid fixed-height-header product-header-bg d-flex">
+    <div class="row align-items-center">
+        <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
+            <h2 class="mt-auto">Unlock the Universe.</h2>
+            <p>Welcome to The Big Bang Bookstore. Explore our collection of books on Space, the Big Bang, and Quantum Physics. Discover the wonders of the cosmos!</p>
+        </div>
+        <div class="col-6 text-white">
         </div>
     </div>
+</div>
 {% endblock page_header %}
 
 {% block content %}
-    <div class="container-fluid px-5">
-        <div class="row">
-            <div class="col-12 col-md-6 mt-4">
-                <h4 class="text-dark d-inline align-middle">Filter: </h4>
-                <div class="btn-group filter-btn-margin">
+<div class="container-fluid px-5">
+    <div class="row">
+        <div class="col-12 col-md-6 mt-4">
+            <h4 class="text-dark d-inline align-middle">Filter: </h4>
+            <div class="btn-group filter-btn-margin">
                 <!-- Author filter -->
-                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if author_filter %}
-                            {{ author_filter }}
-                        {% else %}
-                            Author
-                        {% endif %}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-scroll">
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
-                        {% for author in authors_list %}
-                            <li><a class="dropdown-item" href="{% url 'store:storefront' %}?author={{author}}">{{author}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="btn-group filter-btn-margin">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if author_filter %}
+                        {{ author_filter }}
+                    {% else %}
+                        Author
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-scroll">
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
+                    {% for author in authors_list %}
+                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?author={{author}}">{{author}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="btn-group filter-btn-margin">
                 <!-- Category filter -->
-                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if category_filter %}
-                            {{ category_filter }}
-                        {% else %}
-                            Category
-                        {% endif %}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-scroll">
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
-                        {% for category in categories %}
-                            <li><a class="dropdown-item" href="{% url 'store:storefront' %}?category={{category}}">{{category}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="btn-group filter-btn-margin">
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if category_filter %}
+                        {{ category_filter }}
+                    {% else %}
+                        Category
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-scroll">
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
+                    {% for category in categories %}
+                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?category={{category}}">{{category}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="btn-group filter-btn-margin">
                 <!-- Price filter -->
-                    <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if price_filter %}
-                            {% if price_filter == 'asec' %}
-                                Low to high
-                            {% elif price_filter == 'desc' %}
-                                High to low
-                            {% elif price_filter == 'under10' %}
-                                Under £10
-                            {% elif price_filter == 'under5' %}
-                                Under £5
-                            {% else %}
-                                Price
-                            {% endif %}
+                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if price_filter %}
+                        {% if price_filter == 'asec' %}
+                            Low to high
+                        {% elif price_filter == 'desc' %}
+                            High to low
+                        {% elif price_filter == 'under10' %}
+                            Under £10
+                        {% elif price_filter == 'under5' %}
+                            Under £5
                         {% else %}
                             Price
                         {% endif %}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-scroll">
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=asec">Low to High</a></li>
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=desc">High to Low</a></li>
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=under10">Under £10</a></li>
-                        <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=under5">Under £5</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 text-white d-flex flex-column align-items-end mb-2 mt-4">
-            <!-- Search box -->
-                <form method="GET" action=".">
-                    <div class="input-group mb-3 mt-auto search-box">
-                        <input type="text" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
-                        <button class="btn btn-dark rounded-pill-end text-white" type="submit" id="button-addon2">Search</button>
-                    </div>
-                </form>
+                    {% else %}
+                        Price
+                    {% endif %}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-scroll">
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=asec">Low to High</a></li>
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=desc">High to Low</a></li>
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=under10">Under £10</a></li>
+                    <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=under5">Under £5</a></li>
+                </ul>
             </div>
         </div>
-        <div class="row d-flex flex-wrap justify-content-around">
-        <!-- Display books as cards -->
-            {% for product in page_obj %}
-                <div class="card mb-5" style="width: 18rem;">
-                    <img src="{{product.image.url}}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product.name}}</h5>
-                        <h5 class="card-subtitle"><strong>£{{product.price}}</strong></h5>
-                        <p class="card-text">{{product.description|truncatechars:200 }}</p>
-                        <p class="card-text"><strong>Author:</strong> {{product.author}}</p>
+        <div class="col-12 col-md-6 text-white d-flex flex-column align-items-end mb-2 mt-4">
+        <!-- Search box -->
+            <form method="GET" action=".">
+                <div class="input-group mb-3 mt-auto search-box">
+                    <input type="text" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
+                    <button class="btn btn-dark rounded-pill-end text-white" type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row d-flex flex-wrap justify-content-around">
+    <!-- Display books as cards -->
+        {% for product in page_obj %}
+            <div class="card mb-5" style="width: 18rem;">
+                <img src="{{ product.image.url }}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <h5 class="card-subtitle"><strong>£{{ product.price }}</strong></h5>
+                    <p class="card-text">{{ product.description|truncatechars:200 }}</p>
+                    <p class="card-text"><strong>Author:</strong> {{ product.author }}</p>
+                    <div class="btn-group-bottom mt-auto">
                         <form method="post" action="{% url 'basket:add-to-basket' product.id %}">
                             {% csrf_token %}
-                            {{form.as_p}}
+                            {{ form.as_p }}
                             <button class="btn btn-primary d-inline" type="submit">Buy</button>
                             <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn btn-success d-inline" type="button">More</button></a>
                         </form>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
-        <div class="row mb-4">
-        <!-- Pagination -->
-            <div class="col-12 text-center">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
             </div>
+        {% endfor %}
+    </div>
+    <div class="row mb-4">
+    <!-- Pagination -->
+        <div class="col-12 text-center">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div>
+</div>
 {% endblock content %}
-

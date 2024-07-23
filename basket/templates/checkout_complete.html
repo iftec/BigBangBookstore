@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    <h1>Order No. {{ order_ref }}</h1>
+    <h2>Your order is complete! We hope you enjoy your books.</h2>
+    {% if not user.is_authenticated %}
+        <p>Why not keep track of your orders and make it easier to checkout next time and sign up for an account?</p>
+        <a href="{% url 'store:signup-guest' order_id %}">Create an account here</a>
+    {% endif %}
+{% endblock content %}

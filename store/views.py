@@ -1,11 +1,11 @@
 from django.views import generic
-from .models import Product, Category, Customer
+from .models import Product, Category, Customer, Order
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserSignUpForm
 from django.db.models import Q
 from basket.forms import AddToBasketForm
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import logout, login
 
@@ -88,15 +88,16 @@ class AccountRegister(generic.CreateView):
     form_class = UserSignUpForm
     template_name = 'signup.html'
 
-    def get(self, request):
+    def get(self, request, order_id=None):
         if request.user.is_authenticated:
             return redirect('/')
         else:
-            form = self.form_class()
+            form = self.form_class(initial={'order_id': order_id})
             return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
+        print(form['order_id'])
         if form.is_valid():
             user = User.objects.create(
                 username=form.cleaned_data['username'],
@@ -105,7 +106,7 @@ class AccountRegister(generic.CreateView):
                 first_name=form.cleaned_data['first_name'],
                 last_name=form.cleaned_data['last_name']
             )
-            Customer.objects.create(
+            customer = Customer.objects.create(
                 user=user,
                 phone=form.cleaned_data['phone'],
                 house=form.cleaned_data['house'],
@@ -114,6 +115,14 @@ class AccountRegister(generic.CreateView):
                 city=form.cleaned_data['city'],
                 postcode=form.cleaned_data['postcode']
             )
+            if form['order_id']:
+                order = get_object_or_404(
+                    Order, id=form.cleaned_data['order_id'])
+                order.customer = customer
+                order.status = "Paid"
+                order.save()
+            else:
+                pass
             messages.success(
                 request, 'Registration successful. You can now log in.')
             login(request, user)

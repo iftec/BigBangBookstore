@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, CreateView
 from store.models import Product, Order, OrderItem
 from .models import Basket, BasketItem
 from .forms import AddToBasketForm
+from store.forms import UserSignUpForm
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 
@@ -156,7 +157,7 @@ def UpdateBasket(request):
         if update_qty_item in basket:
             basket[update_qty_item] = int(updated_qty)
         request.session['basket'] = basket
-    return redirect('basket:basket')
+    return redirect('basket:basket')  
 
 
 def CreateOrder(request):
@@ -175,7 +176,7 @@ def CreateOrder(request):
             )
         # Delete the basket
         basket.delete()
-        return redirect('basket:basket')
+        return redirect('basket:checkout-complete', order_id=order.id)
     else:
         order = Order.objects.create(customer=None)
         basket = request.session['basket']
@@ -187,4 +188,6 @@ def CreateOrder(request):
                 quantity=quantity
             )
         del request.session['basket']
-        return redirect('basket:basket')
+        return render(request, 'checkout_complete.html',
+                        {'order_id': order.id,
+                         'order_ref': order.reference})
