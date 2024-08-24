@@ -3,26 +3,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="container-fluid mt-4 ps-4">
+    <div class="container-fluid mt-4 ps-2">
         <div class="row justify-content-end">
             <div class="col-4">
                 <h2 class="col mx-auto text-center mb-4">Your Basket ({{item_count}} items)</h2>
+                
+                    <h3 scope="col" colspan="2" class="text-center pt-2 pl-2">Free UK postage on all Books!</h3>
             </div>
             <div class="col-4 text-end pe-4">
-                <a href="{% url 'store:storefront' %}"><button type="button" class="btn btn-dark ms-auto"><< Continue shopping</button></a>
+                <a href="{% url 'store:storefront' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; Continue shopping</button></a>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-2 text-center mx-auto">
-                <a href="
-                    {% if user.is_authenticated %}
-                        {% url 'checkout:checkout' basket.pk %}
-                    {% else %}
-                        {% url 'checkout:guest-checkout' %}
-                    {% endif %}
-                        "><button type="button" class="btn btn-dark">Checkout</button></a>
-            </div>
-        </div>
+      
         
         {% if messages %}
             <div class="alert alert-info">
@@ -31,47 +23,77 @@
                 {% endfor %}
             </div>
         {% endif %}
-        <table class="table">
+
+    <table class="table-bg w-100 p-3 mt-3">    
             <thead>
                 <tr>
-                    <th scope="col" colspan="2">Book</th>
-                    <th scope="col" class="text-center">Price</th>
-                    <th scope="col" class="text-center">Quantity</th>
-                    <th scope="col" class="text-center">Total</th>
+                <th scope="col" colspan="2" class="text-center pt-2 pl-2">
+                    <h5>Books</h5>
+                   
+                </th>
+                    <th scope="col" class="text-center" colspan="2" ><h5>Price</h5></th>
+                    <th scope="col" class="text-center"><h5>Quantity</h5></th>
+                    <th scope="col" class="text-center"><h5>Total</h5></th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in items %}
                 <tr class="align-middle">
-                    <td><img src="{{item.product.image.url}}" class="img-responsive img-basket"></td>
-                    <td>{{ item.product.name }} by {{ item.product.author }}</td>
-                    <td>£{{ item.product.price }}</td>
-                    <td>
-                        <div class="align-middle d-flex flex-row no-wrap">
+                <td class="text-center"><img src="{{item.product.image.url}}" class="img-responsive img-basket"><p></p></td>
+                <td class="text-start">{{ item.product.name }} by {{ item.product.author }}</td>
+                <td class="text-center" colspan="2">£{{ item.product.price }}</td>
+                <td class="text-center">
+                    <div class="align-middle d-flex flex-row justify-content-center">
                         <button type="button"
                             class="btn {% if item.quantity == 1 %}bg-secondary{% else %}bg-body-secondary{% endif%} px-2 py-0 me-2 me-0 border-0"
                             id="decreaseQty" {% if item.quantity == 1 %}disabled{% endif%}
                             onclick="decreaseQty({{ item.id }}, {{ item.quantity }})">
                             <i class="fa-solid fa-caret-left fa-sm"></i>
                         </button>
-                        <label for="disabledTextInput" class="form-label visually-hidden">Quantity</label>
-                        <input type="text" id="id_qtyInput" class="form-control inputQty-width" value="{{ item.quantity }}" onchange="changeQty({{ item.id }}, this.value)">
-                        <button type="button" class="btn bg-body-secondary px-2 py-0 ms-2 me-0" id="increaseQty" onclick="increaseQty({{ item.id }}, {{ item.quantity }})"><i class="fa-solid fa-caret-right fa-sm"></i></button>
+                            <input type="hidden" name="quantity" value="{{ item.quantity }}">
+                            <input type="text" class="form-control inputQty-width text-center" name="quantity" value="{{ item.quantity }}" id="itemQuantity" onchange="changeQty({{ item.id }}, {{ item.quantity }})">
+                            <button type="submit" class="btn bg-body-secondary px-2 py-0 ms-2 me-0" name="action" value="increase" onclick="increaseQty({{ item.id }}, {{ item.quantity }})">
+                                <i class="fa-solid fa-caret-right fa-sm"></i>
+                            </button>
                         </div>
+                    </form>
                     </td>
-                    <td>
+                <td class="text-center">
                             <form method="post" action="{% url 'basket:remove-from-basket' item.id %}">
                                 {% csrf_token %}
-                                <div class="align-middle d-flex flex-row no-wrap">
-                                    £{{ item.line_cost }}
-                                    <button type="submit" class="btn bg-body-secondary px-2 py-0 ms-3 me-0"><i class="fa-solid fa-xmark fa-sm"></i></button>
+                        <div class="align-middle d-flex justify-content-center align-items-center">
+                            <span>£{{ item.line_cost }}</span>
+                            <button type="submit" class="btn bg-body-secondary px-2 py-0 ms-3"><i class="fa-solid fa-xmark fa-sm"></i></button>
                                 </div>
                             </form>
                     </td>
                 </tr>
                 {% endfor %}
+            {% if items %}
+            <tr class="align-middle">
+                <td colspan="4" class="text-end pb-2"><h4>Total Price</h4></td>
+                <td class="text-center pb-3">£{{ total_price }}</td>
+            </tr>
+            {% endif %}
             </tbody>
         </table>
+
+    <!-- Quote and Checkout button row -->
+    <div class="row justify-content-between align-items-center p-4">
+        <div class="col-10 text-center">
+            <div>
+                <em> “When you sit with a nice girl for two hours you think it’s only a minute, 
+                but when you sit on a hot stove for a minute you think it’s two hours.<br> 
+                That’s relativity.” — Albert Einstein</em>
+            </div>
+        </div>
+        <div class="col-auto">
+            <a href="{% if user.is_authenticated %}{% url 'checkout:checkout' basket.pk %}{% else %}{% url 'checkout:guest-checkout' %}{% endif %}">
+                <button type="button" class="btn custom-btn">Checkout</button>
+            </a>
+        </div>
+    </div>
+
         {% if not items %}
             <h3 class="text-center mt-5">Your basket is empty, go buy some books!</h3>
         {% endif %}
