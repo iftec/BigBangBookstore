@@ -4,14 +4,24 @@
 
 {% block page_header %}
 <div class="container-fluid fixed-height-header product-header-bg d-flex">
-    <div class="row align-items-center">
-        <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header">
+    <div class="row align-items-center position-relative">
+        <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header"><br>
             <h2 class="mt-auto">Unlock the Universe.</h2>
             <p>Welcome to The Big Bang Bookstore. Explore our collection of books on Space, the Big Bang, and Quantum Physics. Discover the wonders of the cosmos!</p>
         </div>
         <div class="col-6 text-white">
+            <!-- Empty column for alignment -->
         </div>
+    
+        
     </div>
+    <!-- Free Postage Banner -->
+    <div class="col-6 text-white d-flex flex-column align-items-end "><br>
+        <h3>Free Postage on all Books!</h3>
+        <small>* UK only</small>
+    </div>
+    
+    
 </div>
 {% endblock page_header %}
 
@@ -19,10 +29,10 @@
 <div class="container-fluid px-5">
     <div class="row">
         <div class="col-12 col-md-6 mt-4">
-            <h4 class="text-dark d-inline align-middle">Filter: </h4>
+            <h4 class="text-dark d-inline align-middle">Filter: </h4><br>
             <div class="btn-group filter-btn-margin">
                 <!-- Author filter -->
-                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {% if author_filter %}
                         {{ author_filter }}
                     {% else %}
@@ -38,7 +48,7 @@
             </div>
             <div class="btn-group filter-btn-margin">
                 <!-- Category filter -->
-                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {% if category_filter %}
                         {{ category_filter }}
                     {% else %}
@@ -54,7 +64,7 @@
             </div>
             <div class="btn-group filter-btn-margin">
                 <!-- Price filter -->
-                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {% if price_filter %}
                         {% if price_filter == 'asec' %}
                             Low to high
@@ -85,7 +95,7 @@
             <form method="GET" action=".">
                 <div class="input-group mb-3 mt-auto search-box">
                     <input type="text" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
-                    <button class="btn btn-dark rounded-pill-end text-white" type="submit" id="button-addon2">Search</button>
+                    <button class="btn custom-btn text-white" type="submit" id="button-addon2">Search</button>
                 </div>
             </form>
         </div>
@@ -104,8 +114,8 @@
                         <form method="post" action="{% url 'basket:add-to-basket' product.id %}">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <button class="btn btn-primary d-inline" type="submit">Buy</button>
-                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn btn-success d-inline" type="button">More</button></a>
+                            <button class="btn custom-btn2 d-inline"  type="submit">Buy</button>
+                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn custom-btn d-inline" type="button">More..</button></a>
                         </form>
                     </div>
                 </div>
@@ -117,17 +127,15 @@
         <div class="col-12 text-center">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a class="custom-btn2 special-text" href="?page=1">&laquo; first</a>
+                    <a class="custom-btn2 special-text" href="?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
 
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
+                
 
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <a class="custom-btn2 special-text" href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="custom-btn2 special-text" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                 {% endif %}
             </span>
         </div>

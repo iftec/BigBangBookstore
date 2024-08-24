@@ -1,11 +1,20 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fixed height for header */
 .fixed-height-header {
     min-height: 500px;
 }
 
+/* Padding for header */
 .header-padding {
     height: 50px !important;
 }
 
+/* Background styling for product header */
 .product-header-bg {
     background-color: rgb(138, 138, 138);
     background-image: url(../img/header_bg.webp);
@@ -14,16 +23,19 @@
     background-position: center;
 }
 
+/* Styling for book cover images */
 .book-cover {
     filter: drop-shadow(10px 14px 10px #6f6f6f);
     border-radius: 5%;
     width: 60% !important;
 }
 
+/* Styling for search box */
 .search-box {
     max-width: 100% !important;
 }
 
+/* Rounded start for pill-shaped buttons */
 .rounded-pill-start {
     border-top-left-radius: 75px !important;
     border-bottom-left-radius: 75px !important;
@@ -31,6 +43,7 @@
     outline: 1px solid #626262;
 }
 
+/* Rounded end for pill-shaped buttons */
 .rounded-pill-end {
     border-top-right-radius: 75px !important;
     border-bottom-right-radius: 75px !important;
@@ -38,50 +51,72 @@
     outline: 1px solid #626262;
 }
 
+/* Margin for filter button */
 .filter-btn-margin {
     margin-left: 20px !important;
 }
 
+/* Card styling */
 .card {
+    background-color: #D8C2E3;    
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
 }
 
+/* Subtitle styling in cards */
 .card .card-subtitle {
     font-weight: 300;
     margin-bottom: 10px;
-    color: #8898aa;
+    color: #2C3E50;
 }
 
-.table-product.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f3f8fa !important;
-}
-
-.table-product td {
-    border-top: 0px solid #dee2e6 !important;
-    color: #728299 !important;
-}
-
-.dropdown-menu-scroll {
+/* Table background and scrollable max height */
+.table-bg {
+    table-layout: auto;
+    width:100%;
+    background-color: #D8C2E3 !important;
     max-height: 200px;
     overflow-y: scroll;
 }
 
+.table-bg th, .table-bg td {
+    word-wrap: break-word;
+}
+.inputQty-width {
+    width: 60px; /* Adjust width as needed */
+}
+
+.table-bg th:nth-child(3), .table-bg td:nth-child(3) {
+    width: 100px; /* Width for the price column */
+}
+
+.table-bg th:nth-child(4), .table-bg td:nth-child(4) {
+    width: 120px; /* Width for the quantity column */
+}
+
+.table-bg th:nth-child(5), .table-bg td:nth-child(5) {
+    width: 100px; /* Width for the total column */
+}
+
+/* Dropdown menu width */
 .dropdown-menu-width {
     min-width: 250px !important;
 }
 
+/* Basket image styling */
 .img-basket {
     width: 100%;
     max-width: 100px !important;
     min-width: 40px;
 }
 
+/* Quantity input width */
 .inputQty-width {
     width: 40px !important;
 }
 
+/* Card body flex layout */
 .card-body {
     display: flex;
     flex-direction: column;
@@ -89,7 +124,149 @@
     flex-grow: 1;
 }
 
+/* Bottom button group margin */
 .btn-group-bottom {
     margin-top: auto;
+}
+
+/* Free postage banner styling */
+.free-postage-banner {
+    top: 13px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    position: relative;
+}
+
+/* Custom button styling */
+.custom-btn {
+    background-color: #5A3E85;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px #693774;
+    color: #fff;
+}
+
+/* Secondary custom button styling */
+.custom-btn2 {
+    background-color: #3B5998;
+    margin-right: 3px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px #374774;
+    color: #fff;
+}
+
+/* Hover effects for custom buttons */
+.custom-btn:hover {
+    background-color: #3a1c4d;
+    transition: 0.7s;
+    color: #fff;
+}
+
+.custom-btn2:hover {
+    background-color: #1f2e4d;
+    transition: 0.7s;
+    color: #fff;
+}
+
+/* Title styling */
+.title1 {
+    color: #2C3E50;
+}
+
+/* Font styling for headers */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+}
+
+/* Font styling for body text */
+body, li {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 400;
+    color: #333333;
+}
+
+/* Font styling for buttons and special text */
+button, .btn, .special-text {
+    font-family: 'Poppins', Tahoma, sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Content wrapper to push footer down */
+.content-wrapper {
+    min-height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-btn-margin {
+    margin-bottom: 1rem !important;
+}
+
+
+
+/* Footer styling */
+.footer1 {
+    
+    margin-top: auto;
+    background-color: #D8C2E3;
+    color: #333333;
+    padding: 20px 0;
+    font-family: 'Lora', Georgia, serif;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Container within the footer */
+.footer .container {
+    max-width: 1200px;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Layout for footer content */
+.footer .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Footer column styling */
+.footer .col-md-4 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Social icon margins */
+.footer .social-icon {
+    margin: 0 10px;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 380px) {
+    .footer .row {
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .footer .col-md-4 {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+  
+   
+
 }
 

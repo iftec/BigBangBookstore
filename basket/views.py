@@ -60,7 +60,7 @@ class BasketView(ListView):
                                   'line_cost': quantity * product.price,
                                   'id': product_id})
                     # Update the basket cost
-                    total_price += quantity * total_price
+                    total_price += quantity * product.price
                     total_items += quantity
             return render(request, 'basket.html',
                           {'items': items, 'total_price': total_price,
@@ -157,7 +157,7 @@ def UpdateBasket(request):
         if update_qty_item in basket:
             basket[update_qty_item] = int(updated_qty)
         request.session['basket'] = basket
-    return redirect('basket:basket')  
+    return redirect('basket:basket')
 
 
 def CreateOrder(request):

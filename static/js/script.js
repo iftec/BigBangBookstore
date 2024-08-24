@@ -1,21 +1,49 @@
+// Function to change the quantity of an item
 function changeQty(itemId, itemQty) {
-    if (itemQty < 1) {
-        window.location.href = "basket/";
+    newQty = document.getElementById("itemQuantity").value;
+    if (newQty < 1) {
+        itemQty = 1;  // Ensure that the quantity doesn't go below 1
     } else {
-        window.location.href = "update_basket/?item=" + itemId + "&qty=" + itemQty;
+        itemQty = newQty;
+    }
+    updateBasket(itemId, itemQty);
+}
+
+// Function to increase the quantity of an item
+function increaseQty(itemId, itemQty) {
+    itemQty += 1;
+    updateBasket(itemId, itemQty);
+}
+
+// Function to decrease the quantity of an item
+function decreaseQty(itemId, itemQty) {
+    if (itemQty > 1) {
+        itemQty -= 1;
+        updateBasket(itemId, itemQty);
     }
 }
 
+// Function to send AJAX request to update the basket
+function updateBasket(itemId, itemQty) {
+    $.ajax({
+        url: '/basket/update_basket/',  // Get url view to trigger update
+        method: 'GET',
+        data: {
+            item: itemId,
+            qty: itemQty
+        },
+        success: function(response) {
+            // Passback the relevant parts to update
+            $('#item-total-' + itemId).text('£' + response.line_cost);  // Update line item cost
+            $('#total-price').text('£' + response.total_price);  // Update total price
+            $('#basket-count').text(response.basket_count + ' items');  // Update basket count
 
-// increase quantity of item in basket
-function increaseQty(itemId, itemQty) {
-    itemQty += 1;
-    window.location.href = "update_basket/?item=" + itemId + "&qty=" + itemQty;
-}
+            location.reload(); // Refresh the page after success response
 
-// decrease quantity of item in basket
-function decreaseQty(itemId, itemQty) {
-    itemQty += -1;
-    window.location.href = "update_basket/?item=" + itemId + "&qty=" + itemQty;
+        },
+        error: function(error) {
+            console.log('Error:', error);
+        }
+    });
 
 }
