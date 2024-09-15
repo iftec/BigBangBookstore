@@ -1,1 +1,49 @@
-success
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 pt-5 text-center">
+            <h1 class="mb-4">Order Successful!</h1>
+            <p class="lead mb-4">Thank you for your purchase. Your order has been confirmed.</p>
+
+            {% if order_details %}
+                <h2 class="mb-4">Order Details</h2>
+                <p><strong>Order Number:</strong> {{ order_details.order_id }}</p>
+                <p><strong>Total Amount:</strong> £{{ order_details.order_amount }}</p>
+                <p><strong>Shipping Address:</strong> {{ order_details.order_name}} {{ order_details.order_address }}</p>
+                <p><strong>Payment Reference:</strong> {{ order_details.order_reference }}
+
+                <h3 class="mt-4">Items:</h3>
+                <table class="table1-bg w-100 p-3 mt-3">    
+                    <thead>
+                        <tr class="row-color-1">
+                            <th scope="col" colspan="2" class="text-center pt-2 pl-2">
+                                <h5>Books</h5>
+                            </th>
+                            <th scope="col" class="text-center pt-2" colspan="2"><h5>Price</h5></th>
+                            <th scope="col" class="text-center pt-2"><h5>Quantity</h5></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in order_items %}
+                        <tr class="align-middle row-color-2">
+                            <td class="text-center"><img src="{{item.product.image.url}}" class="img-responsive img-basket mt-3"><p></p></td>
+                            <td class="text-start">{{ item.item }}</td>
+                            <td class="text-center" colspan="2">{{ item.quantity }}</td>
+                            <td class="text-center" colspan="2">£{{ item.price }}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="align-middle row-color-1">
+                            <td colspan="4" class="text-end pt-2"><h5>Total Price</h5></td>
+                            <td class="text-center pt-2"><h5>£{{ order_details.order_amount }}</h5></td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No order details available.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

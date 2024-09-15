@@ -80,9 +80,19 @@ html, body {
     overflow-y: scroll;
 }
 
+.table1-bg {
+    table-layout: auto;
+    width:100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
 .table-bg th, .table-bg td {
     word-wrap: break-word;
 }
+
 .inputQty-width {
     width: 60px; /* Adjust width as needed */
 }
@@ -111,6 +121,16 @@ html, body {
     min-width: 40px;
 }
 
+.custom-head-bg {
+    table-layout: auto;
+    width:100%;
+    background: hsla(0, 0%, 100%, 0.05);
+    backdrop-filter: blur(30px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    max-height: 200px;
+  
+}
 /* Quantity input width */
 .inputQty-width {
     width: 40px !important;
@@ -171,6 +191,31 @@ html, body {
     color: #fff;
 }
 
+/* Custom button secondary styling */
+.custom-btn-secondary {
+    background-color: #5A3E85;
+    color: #fff;
+    border: none;
+}
+
+.custom-btn-secondary:hover {
+    background-color: #3a1c4d;
+    transition: 0.7s;
+    color: #fff;
+}
+
+.account-page {
+    background-color: rgb(138, 138, 138);
+    background-image: url(../img/header_bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
 /* Title styling */
 .title1 {
     color: #2C3E50;
@@ -196,6 +241,8 @@ button, .btn, .special-text {
     color: #ffffff;
 }
 
+
+
 /* Content wrapper to push footer down */
 .content-wrapper {
     min-height: calc(100vh - 160px);
@@ -207,11 +254,8 @@ button, .btn, .special-text {
     margin-bottom: 1rem !important;
 }
 
-
-
 /* Footer styling */
 .footer1 {
-    
     margin-top: auto;
     background-color: #D8C2E3;
     color: #333333;
@@ -224,6 +268,76 @@ button, .btn, .special-text {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+/* Popup Text */
+.popup-message {
+    background-color: #D8C2E3;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 1px;
+}
+
+/* Custom alert styling */
+.custom-alert {
+    max-width: 500px;
+    margin: 0 auto; 
+    background-color: #D8C2E3;
+    color: black;
+    padding: 10px;
+    padding-right: 2.5rem; 
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Alternating row colors */
+.row-color-1 {
+    background-color: #D8C2E3;
+}
+
+.row-color-2 {
+    background-color: #f8f9fa !important;
+    border-bottom: solid 1px #a8a8a8; 
+}
+
+.row-color-3 {
+    background-color: #fff3ff !important; 
+}
+
+
+/* Custom style for dropdown menu */
+.dropdown-menu {
+    background-color: #f8f9fa !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Custom styles for input fields */
+.form-control.custom-input {
+    background-color: #D8C2E3 !important; 
+    color: #333333 !important; 
+    border: 1px solid #ccc !important; 
+}
+
+/* Custom styles for input fields when focused */
+.form-control.custom-input:focus {
+    background-color: #e0e0e0 !important; 
+    color: #333333 !important; 
+    border: 1px solid #666 !important; 
+}
+
+.custom-container {
+    height: 100%;
+    background: hsla(0, 0%, 100%, 0.05);
+    backdrop-filter: blur(30px);
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.custom-list-item {
+    background-color: #D8C2E3;
+    margin-top: 5px;
 }
 
 /* Container within the footer */
@@ -264,9 +378,4 @@ button, .btn, .special-text {
         width: 100%;
         margin-bottom: 1rem;
     }
-
-  
-   
-
 }
-

@@ -1,0 +1,98 @@
+.fixed-height-header {
+    min-height: 500px;
+}
+
+.header-padding {
+    height: 50px !important;
+}
+
+.product-header-bg {
+    background-color: rgb(138, 138, 138);
+    background-image: url(../img/header_bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.book-cover {
+    filter: drop-shadow(10px 14px 10px #6f6f6f);
+    border-radius: 5%;
+    width: 60% !important;
+}
+
+
+.search-box {
+    max-width: 100% !important;
+}
+
+.rounded-pill-start {
+    border-top-left-radius:75px !important;
+    border-bottom-left-radius: 75px !important;
+    border: none !important;
+    outline: 1px solid #626262;
+}
+
+.rounded-pill-end {
+    border-top-right-radius:75px !important;
+    border-bottom-right-radius: 75px !important;
+    border: none !important;
+    outline: 1px solid #626262;
+}
+
+
+.filter-btn-margin {
+    margin-left: 20px !important;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+.card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: #8898aa;
+}
+.table-product.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f3f8fa!important
+}
+.table-product td{
+    border-top: 0px solid #dee2e6 !important;
+    color: #728299!important;
+}
+
+.dropdown-menu-scroll {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.dropdown-menu-width {
+    min-width: 250px !important;
+}
+
+.img-basket {
+    width: 100%;
+    max-width: 100px !important;
+    min-width: 40px;
+}
+
+.inputQty-width {
+    width: 40px !important;
+}
+
+.fixed-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}

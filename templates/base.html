@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&family=Noto+Sans+Linear+B&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700&family=Noto+Sans+Linear+B&family=Roboto&display=swap" rel="stylesheet">
 
     {% block extra_css %}
     {% endblock %}
@@ -45,19 +45,27 @@
           <!-- Create dropdown menu depending on if user is logged in or not -->
           <ul class="dropdown-menu dropdown-menu-width container px-2">
             {% if user.is_authenticated %}
-              <li><a class="dropdown-item" href="#">My Account</a></li>
-              <li><a class="dropdown-item" href="{% url 'store:logout' %}">Logout</a></li>
+              <li>
+                <a href="{% url 'store:account_page' %}">
+                  <button type="button" class="btn custom-btn w-100 mb-2">My Account</button>
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'store:logout' %}">
+                  <button type="button" class="btn custom-btn w-100">Logout</button>
+                </a>
+              </li>
             {% else %}
               <li>
               <!-- Create login form to handle login process and send user back to current page -->
               <form method="POST" action="{% url 'store:login'%}?next={{ request.path }}">
               {% csrf_token %}
                 <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                      <input type="text" class="form-control custom-input" id="floatingInput" placeholder="Username" name="username">
                       <label for="floatingInput">Username</label>
                   </div>
                   <div class="form-floating mb-3">
-                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                      <input type="password" class="form-control custom-input" id="floatingPassword" placeholder="Password" name="password">
                       <label for="floatingPassword">Password</label>
                   </div>    
               <div class="d-flex justify-content-around">
@@ -73,14 +81,14 @@
     </header>
     <div class="header-padding"></div>
 
-    
     {% block page_header %}
     {% endblock %}
 
     {% block content %}
     <div class="back-image">
+      <!-- Your content here -->
+    </div>
     {% endblock %}
-    
 
     {% block postloadjs %}
     <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
@@ -114,7 +122,5 @@
         </div>
       </div>
     </footer>
-    
-  
   </body>
 </html>

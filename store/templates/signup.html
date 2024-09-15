@@ -2,101 +2,63 @@
 
 {% load static %}
 {% block content %}
-<div class="product-header-bg  h-100 d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="h-100 d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100%;">
         <div class="col-12 col-md-8 col-lg-6 mx-auto py-4 px-3 text-center rounded " style="height: 100% background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);" >
-           <p> <h3 class="mb-4 text-white">Enter your details to register your account</h3></p>
+           <p><h3 class="mb-4">Enter your details to register your account</h3></p>
+            <!-- Display messages -->
+            {% if messages %}
+                <div class="container mt-3">
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible fade show custom-alert" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close pb-1" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %} 
             <form method="post" action="{% url 'store:signup' %}">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingInput" placeholder="Email" name="email">
-                            <label for="floatingInput">Email</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingUser" placeholder="Username" name="username">
-                            <label for="floatingUser">Username</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingPassword" placeholder="Password" name="password1">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingPassword2" placeholder="Password2" name="password2">
-                            <label for="floatingPassword2">Repeat Password</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingFirst" placeholder="First Name" name="first_name">
-                            <label for="floatingFirst">First Name</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingLast" placeholder="Last Name" name="last_name">
-                            <label for="floatingLast">Last Name</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingHouse" placeholder="House" name="house">
-                            <label for="floatingHouse">Address 1</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingAddress" placeholder="Address2" name="address2">
-                            <label for="floatingAddress">Address 2</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingCity" placeholder="City" name="city">
-                            <label for="floatingCity">City</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingCounty" placeholder="County" name="county">
-                            <label for="floatingCounty">County</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingPostcode" placeholder="Postcode" name="postcode">
-                            <label for="floatingPostcode">Postcode</label>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-floating mb-3">
-                            <input type="tel" class="form-control" id="floatingPhone" placeholder="Phone" name="phone">
-                            <label for="floatingPhone">Phone</label>
-                        </div>
-                    </div>
+                    <!-- Loop through fields to create signup form but skip order id -->
+                    {% for field in form %}
+                        {% if field.name != 'order_id' %}
+                            <div class="col-12 col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <!-- Add 'is-invalid' class if the field has errors -->
+                                    <input type="{{ field.field.widget.input_type }}" 
+                                        class="form-control {% if field.errors %}is-invalid{% endif %}" 
+                                        id="floating{{ field.name|capfirst }}" 
+                                        placeholder="{{ field.label }}" 
+                                        name="{{ field.name }}" 
+                                        style="background-color: #D8C2E3;"
+                                        value="{{ field.value|default_if_none:'' }}">
+                                    <label for="floating{{ field.name|capfirst }}">{{ field.label }}</label>
+                                    <!-- Display field errors -->
+                                    {% for error in field.errors %}
+                                        <div class="invalid-tooltip">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <button class="btn btn-dark mt-3" type="submit">Register</button>
+                <button class="btn custom-btn mt-3" type="submit">Register</button>
             </form>
-        
+                        
         </div>
     </div>
 </div>
-
+                        
 <figure class="text-center mt-4">
     <blockquote class="blockquote">
-      <p>“When you sit with a nice girl for two hours you think it’s only a minute, <br>but when you sit on a hot stove for a minute you think it’s two hours. That’s relativity...”</p>
+        <p>“When you sit with a nice girl for two hours you think it’s only a minute, <br>but when you sit on a hot stove for a minute you think it’s two hours. That’s relativity...”</p>
     </blockquote>
     <figcaption class="blockquote-footer">
         <p><cite title="Source Title">Albert Einstein</cite></p>
     </figcaption>
-  </figure>
-
-{% endblock content %}
-
+</figure>
+        
+    {% endblock content %}

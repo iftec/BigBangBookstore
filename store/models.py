@@ -9,12 +9,11 @@ from django.utils import timezone
 # Base customer details
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone = models.CharField(max_length=14)
-    house = models.CharField(max_length=50)
-    street = models.CharField(max_length=50)
+    phone = models.CharField(max_length=14, blank=True, null=True)
+    street = models.CharField(max_length=50, blank=True, null=True)
     address_2 = models.CharField(max_length=50, blank=True, null=True)
-    city = models.CharField(max_length=50)
-    postcode = models.CharField(max_length=20)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    postcode = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
@@ -45,7 +44,6 @@ class Order(models.Model):
     }
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE,
                                  blank=True, null=True)
-    ship_house = models.CharField(max_length=50)
     ship_street = models.CharField(max_length=50)
     ship_address_2 = models.CharField(max_length=50, blank=True, null=True)
     ship_city = models.CharField(max_length=50)
@@ -56,14 +54,17 @@ class Order(models.Model):
                               choices=ORDER_STATUS)
     uuid = models.CharField(default=uuid.uuid4, editable=False)
     reference = models.CharField(max_length=50, null=True, blank=True)
+    order_amount = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    ship_name = models.CharField(max_length=50)
+    ship_phone = models.CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.date} {self.customer}'
+        return f'{self.date} - {self.ship_name}'
 
 
 # Add signal to update the reference just before save
 @receiver(pre_save, sender=Order)
-def set_refernce(sender, instance, **kwargs):
+def set_reference(sender, instance, **kwargs):
     if not instance.reference:
         date_str = str(instance.date)
         date_ref = date_str.replace('-', '')
@@ -76,6 +77,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
 
     def __str__(self):
         return f'{self.order} - {self.item}'
