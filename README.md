@@ -65,11 +65,11 @@ The site will have a home screen with the following:
 
 # **The Big Bang Bookstore**
 
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/wireframe4.png?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//wireframe4.png.jpg?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/wireframes4.png?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//wireframes4.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 ## **Site Overview**
 An online bookstore specialising in books that deal with space, quantum physics, time, reality and other mysteries of the universe. 
-* <a href="https://recipebook.andyryan.tech" rel="nofollow"><strong>View the live site here</strong></a>
+* <a href="https:#" rel="nofollow"><strong>View the live site here</strong></a>
 
 # Table of contents 
 1. [**Site Overview**](#site-overview)
@@ -145,4 +145,140 @@ Other Content:
 ### **Wireframes**
 <p dir="auto">The Big BANG Bookstore Wireframes
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/wireframes4.png?raw=true"><img src="https://github.com/iftec/bigbangbookstore/raw/main/documentation/wireframes4.png?raw=true" alt="wireframes" style="max-width: 100%;"></a></p>
+
+### **Colour Scheme**
+To make it easy to see and stick with the book theme, the screen itself will be an off-white background with mainly black text characters.
+The predominant colours across the site will be off-white and blue
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//welcome-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//welcome-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+### **Typography**
+
+* Sans-serif
+* Arial
+* The text will be consistent throughout the page and the content of most pages is centered. 
+* Responsive across all devices, to make images scale properly and not end up pixelated, text is readable on all devices.
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/recipe-responsive-views1.jpg?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//recipe-responsive-views1.jpg?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+### **Technologies Used**
+
+- [Microsoft Bing](https://www.bing.com/)
+
+Used for image creation.
+- [Chat GPT](https://chat.openai.com/)
+
+Used for Some function creation.
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+
+Used as the basic building block for the project and to structure the content.
+- [CSS](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics)
+
+
+Used to style web content across the website.
+css grid, flexbox, and media queries were used to create the layout of the site.
+
+
+Used for site functionality.
+- [JavaScript](https://www.javascript.com/)
+- [Python](https://www.python.org/)
+- [Django](https://www.djangoproject.com/)
+- HTML
+
+
+- [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
+
+Used as a primary method of fixing issues, finding bugs, and testing responsiveness across the project.
+
+- [Github](https://github.com/)
+
+Used to store code for the project after being pushed.
+- [Github Desktop](https://desktop.github.com/)
+
+Used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+
+- [Balsamiq](https://balsamiq.com/)
+
+Used to create the wireframes for the project.
+
+- [Grammarly](https://app.grammarly.com/)
+
+Used to fix grammar errors across the project.
+
+## **Current Features Common to all pages**
+* Store name
+* Basket
+* Login/Account
+* Colours 
+## **Individual Page Content features**
+
+# **Base HTML**
+* Login/Logout
+* Signup
+* Account Details
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/add-recipe-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/add-recipe-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+## **Landing Page**
+* Base HTML
+* Splash image of the Big Bang
+* Filter book options
+* Search box
+* Images showing list of available books
+* More info and add to basket links
+* Quantity option
+* Sign up or Login links and basket(from base html)
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/book-cover.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//book-cover.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/open-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//open-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+
+# **Accounts page**
+* Base HTML
+* User account details
+* Past orders
+* Change password option
+* Delete account option
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/your-recipes-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//your-recipes-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+# **Register page**
+* Base HTML
+* User registration form
+* Famous quote
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/favorites-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//favorites-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+# **Search results page**
+* Base HTML
+* Search box
+* List of results with image and small description
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/search-book2.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//search-book2.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+# **Details page**
+* Base HTML
+* Book image
+* Book detail
+* Price
+* Add to basket
+* Quantity option
+* Continue shopping
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/instructions-book.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//instructions-book.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+# **Models & Schema**
+### **Database**
+* For the implementation of the Bookstore Application, I required the use of a database to store both the user information, orders and books
+* For the database I have opted to use Postgres
+* Below is a list of relations of the database models used in this application.
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation/DB_Schema.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation//DB_Schema.png?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+
+* Once the user has registered on the site, their sign-up information is stored along with a unique ID in the database.
+* Everytime the user creates an order, this unique ID is stored with that order in a separate 'orders' table.
+
+### **Process**
+#### **Creating an account**
+* A user has the ability to create an account, once the required text has been entered into the entry form click the 'submit' button and the account will be added to the database.
+
+#### ** Login/ Logout**
+
+#### **Update user password**
+* The user has the option to update their password by clicking on the Update Password button in their account section.
+
+
+#### **Delete account**
+* The user has the option to delete their account from the database.
 
