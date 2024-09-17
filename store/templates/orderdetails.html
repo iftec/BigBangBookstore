@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6 text-center">
+            <h1 class="mb-4">Order Status: {{ order.status }}</h1>
+            <p class="lead">Thank you for your purchase!</p>
+        </div>
+        <div class="col-sm-3 justify-content-end">
+            <a href="{% url 'store:storefront' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; continue shopping</button></a>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 pt-3 text-center">
+            <h2 class="mb-4">Order Details</h2>
+            <p><strong>Order Number:</strong> {{ order.id }}</p>
+            <p><strong>Order Date:</strong> {{ order.date }}</p>
+            <p><strong>Total Amount:</strong> £{{ order.order_amount }}</p>
+            <p><strong>Shipping Address:</strong> {{ order.ship_name}}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</p>
+            <p><strong>Payment Reference:</strong> {{ order.reference }}
+
+            <h3 class="mt-4">Items:</h3>
+            <table class="table1-bg w-100 p-3 my-3">    
+                <thead>
+                    <tr class="row-color-1">
+                        <th scope="col" colspan="2" class="text-center pt-2 pl-2">
+                            <h5>Books</h5>
+                        </th>
+                        <th scope="col" class="text-center pt-2" colspan="2"><h5>Quantity</h5></th>
+                        <th scope="col" class="text-center pt-2"><h5>Price</h5></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order_items %}
+                    <tr class="align-middle row-color-2">
+                        <td class="text-center"><img src="{{item.product.image.url}}" class="img-responsive img-basket mt-3"><p></p></td>
+                        <td class="text-start">{{ item.item }}</td>
+                        <td class="text-center" colspan="2">{{ item.quantity }}</td>
+                        <td class="text-center" colspan="2">£{{ item.price }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="align-middle row-color-1">
+                        <td colspan="4" class="text-end pt-2"><h5>Total Price</h5></td>
+                        <td class="text-center pt-2"><h5>£{{ order.order_amount }}</h5></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        </div>
+    </div>
+</div>
+{% endblock %}

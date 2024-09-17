@@ -29,7 +29,7 @@
             <h3 class="mb-3  text-start">Past Orders</h3>
             <ul class="list-group mb-5 text-start">
                 {% for order in orders %}
-                    <li class="list-group-item custom-list-item">Order No.{{ order.id }} - Total: £{{ order.order_amount }}</li>
+                    <li class="list-group-item custom-list-item">Order No.{{ order.id }} - Total: £{{ order.order_amount }} - <a href="{% url 'store:order-detail' order.id %}">View</a></li>
                 {% endfor %}
             </ul>
 

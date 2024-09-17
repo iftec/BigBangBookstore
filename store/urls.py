@@ -11,4 +11,5 @@ urlpatterns = [
     path('register/', views.AccountRegister.as_view(), name='signup'),
     path('register/<int:order_id>', views.AccountRegister.as_view(), name='signup-guest'),
     path('account/', views.account_page, name='account_page'),  # New URL pattern for account page
+    path('orders/<int:pk>', views.OrderDetails.as_view(), name='order-detail'),
 ]

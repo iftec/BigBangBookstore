@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Product, Category, Customer, Order
+from .models import Product, Category, Customer, Order, OrderItem
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserSignUpForm, AddressUpdateForm
 from django.db.models import Q
@@ -193,3 +193,16 @@ def account_page(request):
         'address_form': address_form,
     })
 
+
+# OrderDetails view
+class OrderDetails(generic.DetailView):
+    template_name = "orderdetails.html"
+    model = Order
+    context_object_name = "order"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order_id = self.object.id
+        order_items = OrderItem.objects.filter(order=order_id)
+        context['order_items'] = order_items
+        return context
