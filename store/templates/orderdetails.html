@@ -3,13 +3,10 @@
 {% block content %}
 <div class="container-fluid mt-4">
     <div class="row justify-content-center">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6 text-center">
+        <div class="col-12 text-center">
             <h1 class="mb-4">Order Status: {{ order.status }}</h1>
             <p class="lead">Thank you for your purchase!</p>
-        </div>
-        <div class="col-sm-3 justify-content-end">
-            <a href="{% url 'store:storefront' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; continue shopping</button></a>
+            <a href="{% url 'store:account_page' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; back to account</button></a>
         </div>
     </div>
     <div class="row justify-content-center">
