@@ -12,11 +12,11 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 pt-3 text-center">
             <h2 class="mb-4">Order Details</h2>
-            <p><strong>Order Number:</strong> {{ order.id }}</p>
-            <p><strong>Order Date:</strong> {{ order.date }}</p>
-            <p><strong>Total Amount:</strong> £{{ order.order_amount }}</p>
-            <p><strong>Shipping Address:</strong> {{ order.ship_name}}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</p>
-            <p><strong>Payment Reference:</strong> {{ order.reference }}
+            <h3>>Order Number: {{ order.id }}</h3>
+            <h3>>Order Date: {{ order.date }}</h3>
+            <h3>>Total Amount: £{{ order.order_amount }}</h3>
+            <h3>>Shipping Address: {{ order.ship_name}}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</h3>
+            <h3>>Payment Reference: {{ order.reference }}</h3>
 
             <h3 class="mt-4">Items:</h3>
             <table class="table1-bg w-100 p-3 my-3">    
