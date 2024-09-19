@@ -23,7 +23,7 @@ class UserSignUpForm(UserCreationForm):
         if full_name:
             split_name = full_name.split(' ', 1)
             self.cleaned_data['first_name'] = split_name[0]
-            self.cleaned_data['last_name'] = split_name[1]
+            self.cleaned_data['last_name'] = split_name[1] if len(split_name) > 1 else ''
 
         return self.cleaned_data
 

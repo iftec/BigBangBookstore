@@ -353,7 +353,7 @@ Used to fix grammar errors across the project.
 **Navigate to Accounts Page:**
  - Scroll to the bottom of the page
  - Choose Delete Account Option
- - Please Note: The Delete option is not shown for Admin users 
+
 
 
 **Navigate to Checkout:**
