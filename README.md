@@ -211,7 +211,7 @@ Used to fix grammar errors across the project.
 * Base HTML
 * User registration form
 * Famous quote
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/register.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//register.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/register1.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//register1.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 # **Search results page**
 * Base HTML
@@ -248,14 +248,15 @@ Used to fix grammar errors across the project.
 
 **Fill Out the Registration Form:**
 - The form requires:
-  - **Email Address**: A valid email address, used for username.
+  - **Name**: The clients name.
+  - **Email Address**: A valid email address (this is used for their username).
   - **Password**: A secure password (minimum length, special characters, etc.).
   - **Confirm Password**: Re-enter the password to ensure it matches.
 
 **Submit the Registration Form:**
 - After filling out the form, the user clicks the "Register" button.
 - The system checks for existing users with the same username or email.
-- If successful, the user is redirected to the login page.
+- If successful, the user is redirected to the landing page.
 
 
 #### Logging In
