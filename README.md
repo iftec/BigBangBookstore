@@ -90,7 +90,7 @@ For text on buttons, white will ensure the highest contrast and readability, esp
 Color Usage :
 Buttons: Use Deep Purple and Vibrant Blue.
 Fonts: Charcoal Gray for body text and Midnight Blue for headings will create a clear, structured layout that's easy on the eyes.
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/landing_page.wep?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//landing_page.wep?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/landing_page.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//landing_page.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 ### **Typography**
 
 * 1. Header Fonts (for Titles and Headings):
@@ -233,8 +233,8 @@ Used to fix grammar errors across the project.
 ### **Database**
 * For the implementation of the Bookstore Application, I required the use of a database to store both the user information, orders and books
 * For the database I have opted to use Postgres
-* Below is a list of relations of the database models used in this application.
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/connections.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//connections.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+* Below is a view of the entity relationships for this database.
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/entity_relationships.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//entity_relationships.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 * Once the user has registered on the site, their sign-up information is stored along with a unique ID in the database.
 * Everytime the user creates an order, this unique ID is stored with that order in a separate 'orders' table.
@@ -248,11 +248,10 @@ Used to fix grammar errors across the project.
 
 **Fill Out the Registration Form:**
 - The form requires:
-  - **Username**: A unique identifier for the user.
-  - **Email Address**: A valid email address for account verification.
+  - **Email Address**: A valid email address, used for username.
   - **Password**: A secure password (minimum length, special characters, etc.).
   - **Confirm Password**: Re-enter the password to ensure it matches.
-  - **Address**:
+
 **Submit the Registration Form:**
 - After filling out the form, the user clicks the "Register" button.
 - The system checks for existing users with the same username or email.
@@ -266,7 +265,7 @@ Used to fix grammar errors across the project.
 
 **Enter Login Credentials:**
 - Users input their:
-  - **Username or Email**: The unique identifier or email used during registration.
+  - **Email**: The email used during registration.
   - **Password**: The password set during registration.
 
 **Submit Login Form:**
@@ -433,16 +432,7 @@ As a user, I want to...
 ### ***Bugs and Fixes:***
 * Still needs loads more styling.
     Chat GTP was correct and helped about 50% of the time, the other 50% it would make things worse
-* Print function only printing the first recipe.
-    * Used the console to check the code and found that the id for the recipe was not changing due to the dynamic page creation. Added more code to deal with this issue.
-* Database issues relating to missing tables.
-    * Added code to create any missing tables in the database.
-* Some scaling issues on the your recipe page.
-    * changed some scaling to %
-* Issues with null fields.
-    * Added code to allow for null fields in the database.
-* Some hover effects stopped working.
-    * Added a hover effect to the divs to cure this.
+
 
 #### **Validators**
 
@@ -457,19 +447,19 @@ As a user, I want to...
 
 ### **Lighthouse Scores**
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
-## **Jest Testing**
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/recipe-book/blob/main/documentation//jest_test.png?raw=true"><img src="https://github.com/iftec/recipe-book/blob/main/documentation/jest_test.png?raw=true" alt="wireframes" style="max-width: 100%;"></a>
 
-## **Testing with PyTest**
-* Several tests were built using PyTest in order to test the full functionality of the web application. And can be ran using the 'pytest' command.
+
+## **Testing Phase**
+* Several tests were built in order to test the full functionality of the web application. And can be ran using the 'pytest' command.
 * These tests include emulations of:
     1. Signing up as a new user.
     2. Logging in.
-    3. Adding a recipe.
-    4. Updating a recipe.
-    5. Deleting a recipe.
-    6. Searching for a recipe.
+    3. Adding a book to the basket.
+    4. Updating the basket .
+    5. removing a book from the basket .
+    6. Searching for a book.
     7. Add to favorites.
+    8. Updating user details
 * Full tests shown below:
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
@@ -596,20 +586,14 @@ Making a Local Clone
 * https://chat.openai.com/
     * Used for creating search section of the site.
     * Used to check the format of the code for the site.
-    * used to create hamburger menu.
+    * Used to analyse the some of code issues for the site.
     * Used to create some of the python functions.
-* https://www.bing.com/
-    * Used image creator to create images for the site.
-* https://github.com/motdotla/dotenv
-    * used for secret keys.
-* https://www.npmjs.com/package/bcrypt
-    * Used for password hashing
-* https://codepen.io/rikanutyy/full/PEJBxX
-    * Used as the base for the book animation.
-* https://spoonacular.com/
-    * Used for recipe images and included recipes.
+* https://www.amazon.co.uk/
+    * Images and descriptions for the books.
 * https://www.grammarly.com/
     * Used to check the grammar of the text.
+* https://github.com/isdanryan
+    * For help solving the merge conflicts and the late night calls.
 
 Many thanks to the teachers at the City of Bristol College for their help and support.
 # The Big Bang Bookstore
