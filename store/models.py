@@ -59,7 +59,7 @@ class Order(models.Model):
     ship_phone = models.CharField(max_length=20)
 
     def __str__(self):
-        return f'{self.date} - {self.ship_name}'
+        return f'{self.date} - {self.ship_name} - {self.status}'
 
 
 # Add signal to update the reference just before save
