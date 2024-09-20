@@ -145,7 +145,7 @@ Used as a primary method of fixing issues, finding bugs, and testing responsiven
 - [Github](https://github.com/)
 Used to store code for the project after being pushed.
 
-- [Github Desktop](https://desktop.github.com/)
+- [GitHub Desktop](https://desktop.github.com/)
 
 Used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
 
@@ -205,7 +205,7 @@ Used to fix grammar errors across the project.
 * Past orders
 * Change password option
 * Delete account option
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/account_page.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//account_page?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/account_page.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//account_page.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 # **Register page**
 * Base HTML
@@ -237,7 +237,7 @@ Used to fix grammar errors across the project.
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/entity_relationships.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//entity_relationships.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 * Once the user has registered on the site, their sign-up information is stored along with a unique ID in the database.
-* Everytime the user creates an order, this unique ID is stored with that order in a separate 'orders' table.
+* Every time the user creates an order, this unique ID is stored with that order in a separate 'orders' table.
 
 ### Process
 
@@ -392,8 +392,7 @@ Used to fix grammar errors across the project.
 * Lighthouse
 * W3C Markup Validation Service
 * W3C CSS Validation Service
-* Jest 
-* pytest
+
 
 
 ### **Manual Testing:**
@@ -410,27 +409,38 @@ Used to fix grammar errors across the project.
 
 ### **Testing User Stories**
 As a user, I want to...
-* Have somewhere to easily find books about the universe and reality.
+* Have somewhere to find books about the universe and reality easily.
     * The user can easily find books relating to those specific subjects.
 * Easily understand how to use the website
     * The website has a simple layout with intuitive icons and labels.
 * Register with the site.
     * The user can register their details with the site, or log in if they already have an account.
-* Log in to the site.
+* Login to the site.
     * The user can log in to the site using their username or email and password.
 * Log out of the site.
     * The user can log out of the site at any time.
 * View my account and change details.
-    * The user can view  and change their account details, and password.
+    * The user can view and change their account details, and password.
 * Purchase book as a guest.
-    *The user can purchase book as a guest without the need to register or log in.
+    *The user can purchase a book as a guest without the need to register or log in.
 *  View all books in the database.
-    * The user can view all books in the database, and can filter by genre, price, and rating.
+    * The user can view all books in the database and can filter by genre, price, and rating.
 * Search for books.
-    The user can search by name or title for books in the database.
+    The user can search the database by name or title for books.
 * Delete my account
     * The user can delete their account from the accounts page.
+
+### Automated Testing 
+Automated Testing 
+Using Django's testing framework I carried out several unit tests on the key operations of the site, such as Authentication and CRUD functions for each module. These tests can be ran under local deployment using the relevant python command for your cli followed by manage.py tests. Each modules tests are located in their respective tests.py file.
+
 ### ***Bugs and Fixes:***
+* Problems caused by an accidental branch and following merges.
+    The merges of the branches kept causing me errors, not wanting to do a force merge and lose my history in GitHub, I had someone else to try a couple of uploads to see if the issue was my end.
+    As such, two uploads in my GitHub repo show being uploaded by isdanryan.
+    I have spoken to my course tutor Manuel and he has confirmed that this will be ok.
+    - As it was, I had fixed all the issues on my last merge, but at that point, I was unaware of this and wanted to confirm the issue was not on my machine.
+
 * Still needs loads more styling.
     Chat GTP was correct and helped about 50% of the time, the other 50% it would make things worse
 
@@ -447,21 +457,6 @@ As a user, I want to...
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 ### **Lighthouse Scores**
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
-
-
-## **Testing Phase**
-* Several tests were built in order to test the full functionality of the web application. And can be ran using the 'pytest' command.
-* These tests include emulations of:
-    1. Signing up as a new user.
-    2. Logging in.
-    3. Adding a book to the basket.
-    4. Updating the basket .
-    5. removing a book from the basket .
-    6. Searching for a book.
-    7. Add to favorites.
-    8. Updating user details
-* Full tests shown below:
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 
@@ -585,17 +580,18 @@ Making a Local Clone
 * https://learn.codeinstitute.net/
     * Used for reference from the many examples shown on the course.
 * https://chat.openai.com/
-    * Used for creating search section of the site.
+    * Used for creating a search section of the site.
     * Used to check the format of the code for the site.
     * Used to analyse the some of code issues for the site.
-    * Used to create some of the python functions.
+    * Used to create some of the Python functions.
 * https://www.amazon.co.uk/
     * Images and descriptions for the books.
 * https://www.grammarly.com/
     * Used to check the grammar of the text.
 * https://github.com/isdanryan
-    * For help solving the merge conflicts and the late night calls.
+    * For help solving the merge conflicts, suggestions, and the late-night calls.
 
-Many thanks to the teachers at the City of Bristol College for their help and support.
+Many, many thanks to: 	
+- Pasquale Fasulo, Manuel Perez Romero, and all those at The City of Bristol College for their help and support throught this course, at times it's been tough going, but you've all been great and very approachable.
 # The Big Bang Bookstore
 
