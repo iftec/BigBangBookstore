@@ -6,41 +6,56 @@
         <div class="col-12 text-center">
             <h1 class="mb-4">Order Status: {{ order.status }}</h1>
             <p class="lead">Thank you for your purchase!</p>
-            <a href="{% url 'store:account_page' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; back to account</button></a>
+            <a href="{% url 'store:account_page' %}">
+                <button type="button" class="btn custom-btn ms-auto" aria-label="Back to account">
+                    &laquo; back to account
+                </button>
+            </a>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 pt-3 text-center">
             <h2 class="mb-4">Order Details</h2>
-            <h3>>Order Number: {{ order.id }}</h3>
-            <h3>>Order Date: {{ order.date }}</h3>
-            <h3>>Total Amount: £{{ order.order_amount }}</h3>
-            <h3>>Shipping Address: {{ order.ship_name}}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</h3>
-            <h3>>Payment Reference: {{ order.reference }}</h3>
+            <h3>Order Number: {{ order.id }}</h3>
+            <h3>Order Date: {{ order.date }}</h3>
+            <h3>Total Amount: £{{ order.order_amount }}</h3>
+            <h3>Shipping Address: {{ order.ship_name }}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</h3>
+            <h3>Payment Reference: {{ order.reference }}</h3>
 
             <h3 class="mt-4">Items:</h3>
-            <table class="table1-bg w-100 p-3 my-3">    
+            <table class="table1-bg w-100 p-3 my-3" aria-label="Order items table">
                 <thead>
                     <tr class="row-color-1">
                         <th scope="col" colspan="2" class="text-center pt-2 pl-2">
                             <h5>Books</h5>
                         </th>
-                        <th scope="col" class="text-center pt-2" colspan="2"><h5>Quantity</h5></th>
-                        <th scope="col" class="text-center pt-2"><h5>Price</h5></th>
+                        <th scope="col" class="text-center pt-2" colspan="2">
+                            <h5>Quantity</h5>
+                        </th>
+                        <th scope="col" class="text-center pt-2">
+                            <h5>Price</h5>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in order_items %}
                     <tr class="align-middle row-color-2">
-                        <td class="text-center"><img src="{{item.product.image.url}}" class="img-responsive img-basket mt-3"><p></p></td>
+                        <td class="text-center">
+                            <img src="{{ item.product.image.url }}" class="img-responsive img-basket mt-3" alt="Image of {{ item.item }}">
+                            <p></p>
+                        </td>
                         <td class="text-start">{{ item.item }}</td>
                         <td class="text-center" colspan="2">{{ item.quantity }}</td>
                         <td class="text-center" colspan="2">£{{ item.price }}</td>
                     </tr>
                     {% endfor %}
                     <tr class="align-middle row-color-1">
-                        <td colspan="4" class="text-end pt-2"><h5>Total Price</h5></td>
-                        <td class="text-center pt-2"><h5>£{{ order.order_amount }}</h5></td>
+                        <td colspan="4" class="text-end pt-2">
+                            <h5>Total Price</h5>
+                        </td>
+                        <td class="text-center pt-2">
+                            <h5>£{{ order.order_amount }}</h5>
+                        </td>
                     </tr>
                 </tbody>
             </table>

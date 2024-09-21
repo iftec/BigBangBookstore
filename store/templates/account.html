@@ -4,76 +4,82 @@
 
 {% block content %}
 <div class="h-100 d-flex justify-content-center align-items-center full-height">
-        <div class="col-12 col-md-8 col-lg-6 mx-auto pt-1 pb-2 px-3 text-center rounded custom-container">
-            <h2 class="text-center mt-4 mb-3 rounded">Your Account</h2>
+    <div class="col-12 col-md-8 col-lg-6 mx-auto pt-1 pb-2 px-3 text-center rounded custom-container">
+        <h2 class="text-center mt-4 mb-3 rounded">Your Account</h2>
 
-            <!-- Display messages -->
-            {% if messages %}
-                <div class="container mt-3">
-                    {% for message in messages %}
-                        <div class="alert alert-dismissible fade show custom-alert" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close pb-1" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-
-                <a class="btn custom-btn mx-2" href="#change_password" role="button">Change password</a>
-                <a class="btn custom-btn mx-2" href="#update_details" role="button">Update details</a>
-                <a class="btn custom-btn mx-2" href="#delete_account" role="button">Delete account</a>
-                <a class="btn custom-btn mx-2" href="{% url 'store:storefront' %}" role="button">Shop</a>
-
-            <h3 class="my-3 text-start">Past Orders</h3>
-            <ul class="list-group mb-5 text-start">
-                {% for order in orders %}
-                    <li class="list-group-item custom-list-item">Order No.{{ order.id }} - Total: £{{ order.order_amount }} - <a href="{% url 'store:order-detail' order.id %}" class="text-black">View</a></li>
+        <!-- Display messages -->
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                    <div class="alert alert-dismissible fade show custom-alert" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close pb-1" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
+        {% endif %}
 
-            <h3 id="change_password" class="mb-3 text-start">Change My Password</h3>
-            <form method="post" class="mb-5 text-start">
-                {% csrf_token %}
-                <!-- Hidden dummy field to trick browser autofill -->
-                <input type="text" name="dummy_username" class="d-none">
-                <label>{{ password_form.old_password.label_tag }}</label><br>
-                <input type="password" name="old_password_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required>
-                <label>{{ password_form.new_password1.label_tag }}</label><br>
-                <input type="password" name="new_password1_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required>
-                <label>Password confirmation</label><br>
-                <input type="password" name="new_password2_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required>
-                <button type="submit" name="change_password" class="btn custom-btn">Change Password</button>
-            </form>
-            <h3 id="update_details" class="mb-3 text-start">Update My Details</h3>
-            <form method="post" class="mb-5 text-start">
-                {% csrf_token %}
-                {% for field in address_form %}
-                    <label>{{ field.label_tag }}</label><br>
-                    {% if field.name == "address_2" %}
-                        <input type="text" name="{{ field.name }}" class="form-control mb-3 custom-input" value="{{ field.value|default_if_none:'' }}">
-                    {% else %}
-                        <input type="text" name="{{ field.name }}" class="form-control mb-3 custom-input" value="{{ field.value|default_if_none:'' }}" required>
-                    {% endif %}
-                {% endfor %}
-                <button type="submit" name="update_address" class="btn custom-btn">Update Details</button>
-            </form>
+        <a class="btn custom-btn mx-2" href="#change_password" role="button" aria-label="Change password">Change password</a>
+        <a class="btn custom-btn mx-2" href="#update_details" role="button" aria-label="Update details">Update details</a>
+        <a class="btn custom-btn mx-2" href="#delete_account" role="button" aria-label="Delete account">Delete account</a>
+        <a class="btn custom-btn mx-2" href="{% url 'store:storefront' %}" role="button" aria-label="Shop">Shop</a>
 
-            <h3 id="delete_account" class="mb-3 text-start">Delete Account</h3>
-            <form method="post" class="text-start">
-                {% csrf_token %}
-                <button type="submit" name="delete_account" class="btn btn-danger">Delete Account</button>
-            </form>
+        <h3 class="my-3 text-start">Past Orders</h3>
+        <ul class="list-group mb-5 text-start">
+            {% for order in orders %}
+                <li class="list-group-item custom-list-item">
+                    Order No.{{ order.id }} - Total: £{{ order.order_amount }} - 
+                    <a href="{% url 'store:order-detail' order.id %}" class="text-black" aria-label="View order {{ order.id }}">View</a>
+                </li>
+            {% endfor %}
+        </ul>
 
-            <div class="row justify-content-end mt-4">
-                <div class="col-4 text-end pe-4">
-                    <a href="{% url 'store:storefront' %}"><button type="button" class="btn custom-btn ms-auto"> &laquo; Continue shopping</button></a>
-                </div>
-            </div><br>
-        </div>
+        <h3 id="change_password" class="mb-3 text-start">Change My Password</h3>
+        <form method="post" class="mb-5 text-start">
+            {% csrf_token %}
+            <!-- Hidden dummy field to trick browser autofill -->
+            <input type="text" name="dummy_username" class="d-none">
+            <label for="old_password">Old Password</label><br>
+            <input type="password" id="old_password" name="old_password_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required aria-label="Old password">
+            <label for="new_password1">New Password</label><br>
+            <input type="password" id="new_password1" name="new_password1_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required aria-label="New password">
+            <label for="new_password2">Password Confirmation</label><br>
+            <input type="password" id="new_password2" name="new_password2_{{ form.id_for_label }}" class="form-control mb-3 custom-input" value="" autocomplete="new-password" required aria-label="Password confirmation">
+            <button type="submit" name="change_password" class="btn custom-btn" aria-label="Change Password">Change Password</button>
+        </form>
+
+        <h3 id="update_details" class="mb-3 text-start">Update My Details</h3>
+        <form method="post" class="mb-5 text-start">
+            {% csrf_token %}
+            {% for field in address_form %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label><br>
+                {% if field.name == "address_2" %}
+                    <input type="text" id="{{ field.id_for_label }}" name="{{ field.name }}" class="form-control mb-3 custom-input" value="{{ field.value|default_if_none:'' }}" aria-label="{{ field.label }}">
+                {% else %}
+                    <input type="text" id="{{ field.id_for_label }}" name="{{ field.name }}" class="form-control mb-3 custom-input" value="{{ field.value|default_if_none:'' }}" required aria-label="{{ field.label }}">
+                {% endif %}
+            {% endfor %}
+            <button type="submit" name="update_address" class="btn custom-btn" aria-label="Update Details">Update Details</button>
+        </form>
+
+        <h3 id="delete_account" class="mb-3 text-start">Delete Account</h3>
+        <form method="post" class="text-start">
+            {% csrf_token %}
+            <button type="submit" name="delete_account" class="btn btn-danger" aria-label="Delete Account">Delete Account</button>
+        </form>
+
+        <div class="row justify-content-end mt-4">
+            <div class="col-4 text-end pe-4">
+                <a href="{% url 'store:storefront' %}">
+                    <button type="button" class="btn custom-btn ms-auto" aria-label="Continue shopping"> &laquo; Continue shopping</button>
+                </a>
+            </div>
+        </div><br>
+    </div>
 </div>
 <figure class="text-center mt-5">
     <blockquote class="blockquote">
-      <p>“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”</p>
+        <p>“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”</p>
     </blockquote>
     <figcaption class="blockquote-footer">
         <cite title="Source Title">Albert Einstein</cite>

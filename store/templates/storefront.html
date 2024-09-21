@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- Free Postage Banner -->
-    <div class="col-6 text-white d-flex flex-column align-items-end "><br>
+    <div class="col-6 text-white d-flex flex-column align-items-end"><br>
         <h3>Free Postage on all Books!</h3>
         <small>* UK only</small>
     </div>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 text-white d-flex flex-column align-items-end mb-2 mt-4">
-        <!-- Search box -->
+            <!-- Search box -->
             <form method="GET" action=".">
                 <div class="input-group mb-3 mt-auto search-box">
                     <label for="search-input" class="visually-hidden">Search</label>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="row d-flex flex-wrap justify-content-around">
-    <!-- Display books as cards -->
+        <!-- Display books as cards -->
         {% for product in page_obj %}
             <div class="card mb-5" style="width: 18rem;" role="article">
                 <img src="{{ product.image.url }}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image of {{ product.name }}">
@@ -112,7 +112,9 @@
                             {% csrf_token %}
                             {{ form.as_p }}
                             <button class="btn custom-btn2 d-inline" type="submit" aria-label="Buy {{ product.name }}">Buy</button>
-                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn custom-btn d-inline" type="button" aria-label="More details about {{ product.name }}">More..</button></a>
+                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none">
+                                <button class="btn custom-btn d-inline" type="button" aria-label="More details about {{ product.name }}">More..</button>
+                            </a>
                         </form>
                     </div>
                 </div>
@@ -120,17 +122,17 @@
         {% endfor %}
     </div>
     <div class="row mb-4">
-    <!-- Pagination -->
+        <!-- Pagination -->
         <div class="col-12 text-center">
             <span class="step-links" role="navigation" aria-label="Pagination">
                 {% if page_obj.has_previous %}
-                    <a class="custom-btn2 me-1 special-text" href="?page=1" aria-label="First page">&laquo; first</a>
-                    <a class="custom-btn2 me-1 special-text" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous page">previous</a>
+                    <a class="custom-btn2 p-1 me-1 special-text" href="?page=1" aria-label="First page">&laquo; first</a>
+                    <a class="custom-btn2 p-1 me-1 special-text" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous page">previous</a>
                 {% endif %}
 
                 {% if page_obj.has_next %}
-                    <a class="custom-btn2 me-1 special-text" href="?page={{ page_obj.next_page_number }}" aria-label="Next page">next</a>
-                    <a class="custom-btn2 special-text" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last page">last &raquo;</a>
+                    <a class="custom-btn2 p-1 me-1 special-text" href="?page={{ page_obj.next_page_number }}" aria-label="Next page">next</a>
+                    <a class="custom-btn2 p-1 special-text" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last page">last &raquo;</a>
                 {% endif %}
             </span>
         </div>

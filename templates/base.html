@@ -35,7 +35,7 @@
         <h1 class="title1 text-left pb-2 mb-0">The Big <strong>BANG</strong> Bookstore</h1>
         <nav class="d-flex align-middle p-1">
           <a href="{% url 'basket:basket' %}" aria-label="Basket">
-            <button type="button" class="btn custom-btn m-1 me-3" aria-label="View Basket"><i class="fa-solid fa-cart-shopping"></i></button>
+            <button type="button" class="btn custom-btn m-1 me-4" aria-label="View Basket"><i class="fa-solid fa-cart-shopping"></i></button>
           </a>
           <div class="dropdown">
             <button class="btn custom-btn m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
@@ -64,17 +64,19 @@
                 <form method="POST" action="{% url 'store:login'%}?next={{ request.path }}">
                 {% csrf_token %}
                   <div class="form-floating mb-3">
-                        <input type="text" class="form-control custom-input" id="floatingInput" placeholder="Username" name="username" aria-label="Username">
-                        <label for="floatingInput">Email</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control custom-input" id="floatingPassword" placeholder="Password" name="password" aria-label="Password">
-                        <label for="floatingPassword">Password</label>
-                    </div>    
-                <div class="d-flex justify-content-around">
-                  <button type="submit" class="btn custom-btn d-inline" aria-label="Login">Login</button>
-                  <a class="text-decoration-none link-dark" href="{% url 'store:signup' %}"><button type="button" class="btn custom-btn d-inline" aria-label="Register">Register</button></a>
-                </div>
+                    <input type="text" class="form-control custom-input" id="floatingInput" placeholder="Username" name="username" aria-label="Username">
+                    <label for="floatingInput">Email</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control custom-input" id="floatingPassword" placeholder="Password" name="password" aria-label="Password">
+                    <label for="floatingPassword">Password</label>
+                  </div>    
+                  <div class="d-flex justify-content-around">
+                    <button type="submit" class="btn custom-btn d-inline" aria-label="Login">Login</button>
+                    <a class="text-decoration-none link-dark" href="{% url 'store:signup' %}">
+                      <button type="button" class="btn custom-btn d-inline" aria-label="Register">Register</button>
+                    </a>
+                  </div>
                 </form>
                 </li>
               {% endif %}
@@ -82,48 +84,48 @@
           </div>
         </nav>
       </header>
-    <div class="header-padding"></div>
+      <div class="header-padding"></div>
 
-    {% block page_header %}
-    {% endblock %}
+      {% block page_header %}
+      {% endblock %}
 
-    {% block content %}
-    <div class="back-image">
-      <!-- Your content here -->
+      {% block content %}
+      <div class="back-image">
+        <!-- Your content here -->
+      </div>
+      {% endblock %}
+
+      {% block postloadjs %}
+      <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+      {% endblock %}
     </div>
-    {% endblock %}
-
-    {% block postloadjs %}
-    <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
-    {% endblock %}
-  </div>
-    <!-- Footer -->
-    <footer class="footer footer1">
-      <div class="container ps-0">
-        <div class="row text-center text-md-left">
-          <div class="col-md-4 mb-3 mb-md-0">
-            <h5 class="text-uppercase font-weight-bold">Contact Us</h5>
-            <p class="mb-1"><i class="fas fa-phone-alt"></i> Tel: +44 1234 567 890</p>
-            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@bigbangbookstore.com">contact@bigbangbookstore.com</a></p>
-          </div>
-          <div class="col-md-4 mb-3 mb-md-0">
-            <h5 class="text-uppercase font-weight-bold">Follow Us</h5>
+   <!-- Footer -->
+<footer class="footer footer1">
+  <div class="container ps-0">
+    <div class="row text-center text-md-left">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">Contact Us</h5>
+        <p class="mb-1"><i class="fas fa-phone-alt"></i> Tel: +44 1234 567 890</p>
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@bigbangbookstore.com" style="color: #003366;">contact@bigbangbookstore.com</a></p>
+      </div>
+      <div class="col-md-4 mb-3 mb-md-0">
+        <h5 class="text-uppercase font-weight-bold">Follow Us</h5>
             <a href="https://www.facebook.com" class="social-icon mx-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.twitter.com" class="social-icon mx-2" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             <a href="https://www.instagram.com" class="social-icon mx-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com" class="social-icon mx-2" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-          <div class="col-md-4 text-center text-md-left">
-            <h5 class="text-uppercase font-weight-bold">Our Location</h5>
-            <p>1234 Space Avenue, Cosmos City, Universe</p>
-          </div>
-        </div>
-        <div class="row mt-4">
-          <div class="col text-center">
-            <p class="small text-muted">© 2024 The Big Bang Bookstore. All Rights Reserved.</p>
-          </div>
-        </div>
       </div>
-    </footer>
-  </body>
+      <div class="col-md-4 text-center text-md-left">
+        <h5 class="text-uppercase font-weight-bold">Our Location</h5>
+        <p>1234 Space Avenue, Cosmos City, Universe</p>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col text-center">
+        <p class="small text-muted">© 2024 The Big Bang Bookstore. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
 </html>

@@ -461,18 +461,20 @@ Using Django's testing framework I carried out several unit tests on the key ope
 
 
 #### **Validators**
+The following validators were used during final testing to ensure all code was up to standards;
 
-#### ***HTML*** - https://validator.w3.org/nu/
-
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
-
-
+* Javascript - JSHint
+* Python - Flake8 VS Code Extension
+* CSS - W3C CSS Validator
+* HTML - W3C HTML Validator
+- Note: W3C's HTML Validator doesn't work well with Django's HTML template language, so after pasting in the code, I ignored some of the errors and only paid attention to the ones directly relating to the HTML language and formatting.
 
 #### ***CSS*** - https://jigsaw.w3.org/css-validator/
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/css_validation.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//css_validation.webp?raw=true" alt="validation" style="max-width: 100%;"></a></p>
 
 ### **Lighthouse Scores**
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/lighthouse1.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//lighthouse1.webp?raw=true" alt="scores" style="max-width: 100%;"></a></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/lighthouse2.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//lighthouse2.webp?raw=true" alt="scores" style="max-width: 100%;"></a></p>
 
 
 ## **Deployment**

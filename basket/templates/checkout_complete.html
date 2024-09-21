@@ -5,8 +5,15 @@
 {% block content %}
     <h1>Order No. {{ order_ref }}</h1>
     <h2>Your order is complete! We hope you enjoy your books.</h2>
-    {% if not user.is_authenticated %}
-        <p>Why not keep track of your orders and make it easier to checkout next time and sign up for an account?</p>
-        <a href="{% url 'store:signup-guest' order_id %}">Create an account here</a>
-    {% endif %}
+    {% if user.is_authenticated == False %}
+    <h3>Why not keep track of your orders and make it easier to checkout next time?</h3>
+    <h4>Sign up for an account now and enjoy these benefits:</h4>
+    <ul>
+        <li>Faster Checkout: Save your shipping and billing information for quicker checkouts in the future.</li>
+        <li>Order Tracking: Easily track your orders and view your order history.</li>
+        <li>Exclusive Offers: Receive special discounts and promotions available only to registered users.</li>
+        <li>Easy Returns: Simplify the process of returning items with saved order information.</li>
+    </ul>
+    <p><a href="{% url 'store:signup-guest' 4 %}">register for an account?</a></p>
+{% endif %}
 {% endblock content %}
