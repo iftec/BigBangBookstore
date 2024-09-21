@@ -45,5 +45,16 @@ function updateBasket(itemId, itemQty) {
             console.log('Error:', error);
         }
     });
-
 }
+
+// Preload images
+document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll('.card-img-top');
+    images.forEach(image => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = image.src;
+        document.head.appendChild(link);
+    });
+});

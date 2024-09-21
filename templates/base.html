@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Welcome to The Big Bang Bookstore. Explore our collection of books on Space, the Big Bang, and Quantum Physics. Discover the wonders of the cosmos!">
 
     {% block extra_meta %}
     {% endblock %}
@@ -30,55 +31,57 @@
   </head>
   <body>
     <div class="content-wrapper">
-    <header class="container-fluid bg-white fixed-top d-flex justify-content-between border-bottom border-dark-subtle">
-      <h1 class="title1 text-left pb-2 mb-0">The Big <strong>BANG</strong> Bookstore</h1>
-      <nav class="d-flex align-middle p-1">
-        <a href="{% url 'basket:basket' %}" aria-label="Basket"><button type="button" class="btn custom-btn m-1"><i class="fa-solid fa-cart-shopping"></i></button></a>
-        <div class="dropdown">
-          <button class="btn custom-btn m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {% if user.is_authenticated %}
-              <i class="fa-solid fa-user"></i>
-            {% else %}
-              <i class="fa-solid fa-right-to-bracket"></i>
-            {% endif %}
-          </button>
-          <!-- Create dropdown menu depending on if user is logged in or not -->
-          <ul class="dropdown-menu dropdown-menu-width container px-2">
-            {% if user.is_authenticated %}
-              <li>
-                <a href="{% url 'store:account_page' %}">
-                  <button type="button" class="btn custom-btn w-100 mb-2">My Account</button>
-                </a>
-              </li>
-              <li>
-                <a href="{% url 'store:logout' %}">
-                  <button type="button" class="btn custom-btn w-100">Logout</button>
-                </a>
-              </li>
-            {% else %}
-              <li>
-              <!-- Create login form to handle login process and send user back to current page -->
-              <form method="POST" action="{% url 'store:login'%}?next={{ request.path }}">
-              {% csrf_token %}
-                <div class="form-floating mb-3">
-                      <input type="text" class="form-control custom-input" id="floatingInput" placeholder="Username" name="username">
-                      <label for="floatingInput">Email</label>
-                  </div>
+      <header class="container-fluid bg-white fixed-top d-flex justify-content-between border-bottom border-dark-subtle">
+        <h1 class="title1 text-left pb-2 mb-0">The Big <strong>BANG</strong> Bookstore</h1>
+        <nav class="d-flex align-middle p-1">
+          <a href="{% url 'basket:basket' %}" aria-label="Basket">
+            <button type="button" class="btn custom-btn m-1 me-3" aria-label="View Basket"><i class="fa-solid fa-cart-shopping"></i></button>
+          </a>
+          <div class="dropdown">
+            <button class="btn custom-btn m-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="User menu">
+              {% if user.is_authenticated %}
+                <i class="fa-solid fa-user"></i>
+              {% else %}
+                <i class="fa-solid fa-right-to-bracket"></i>
+              {% endif %}
+            </button>
+            <!-- Create dropdown menu depending on if user is logged in or not -->
+            <ul class="dropdown-menu dropdown-menu-width container px-2">
+              {% if user.is_authenticated %}
+                <li>
+                  <a href="{% url 'store:account_page' %}">
+                    <button type="button" class="btn custom-btn w-100 mb-2" aria-label="My Account">My Account</button>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'store:logout' %}">
+                    <button type="button" class="btn custom-btn w-100" aria-label="Logout">Logout</button>
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                <!-- Create login form to handle login process and send user back to current page -->
+                <form method="POST" action="{% url 'store:login'%}?next={{ request.path }}">
+                {% csrf_token %}
                   <div class="form-floating mb-3">
-                      <input type="password" class="form-control custom-input" id="floatingPassword" placeholder="Password" name="password">
-                      <label for="floatingPassword">Password</label>
-                  </div>    
-              <div class="d-flex justify-content-around">
-                <button type="submit" class="btn custom-btn d-inline">Login</button>
-                <a class="text-decoration-none link-dark" href="{% url 'store:signup' %}"><button type="button" class="btn custom-btn d-inline">Register</button></a>
-              </div>
-              </form>
-              </li>
-            {% endif %}
-          </ul>
-        </div>
-      </nav>
-    </header>
+                        <input type="text" class="form-control custom-input" id="floatingInput" placeholder="Username" name="username" aria-label="Username">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control custom-input" id="floatingPassword" placeholder="Password" name="password" aria-label="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>    
+                <div class="d-flex justify-content-around">
+                  <button type="submit" class="btn custom-btn d-inline" aria-label="Login">Login</button>
+                  <a class="text-decoration-none link-dark" href="{% url 'store:signup' %}"><button type="button" class="btn custom-btn d-inline" aria-label="Register">Register</button></a>
+                </div>
+                </form>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </header>
     <div class="header-padding"></div>
 
     {% block page_header %}
@@ -105,10 +108,10 @@
           </div>
           <div class="col-md-4 mb-3 mb-md-0">
             <h5 class="text-uppercase font-weight-bold">Follow Us</h5>
-            <a href="#" class="social-icon mx-2"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-icon mx-2"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-icon mx-2"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon mx-2"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com" class="social-icon mx-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" class="social-icon mx-2" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" class="social-icon mx-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" class="social-icon mx-2" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <div class="col-md-4 text-center text-md-left">
             <h5 class="text-uppercase font-weight-bold">Our Location</h5>

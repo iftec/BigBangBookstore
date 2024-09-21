@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block page_header %}
-<div class="container-fluid fixed-height-header product-header-bg d-flex">
+<div class="container-fluid fixed-height-header product-header-bg d-flex" role="banner">
     <div class="row align-items-center position-relative">
         <div class="col-6 text-white d-flex flex-column align-items-start fixed-height-header"><br>
             <h2 class="mt-auto">Unlock the Universe.</h2>
@@ -12,59 +12,55 @@
         <div class="col-6 text-white">
             <!-- Empty column for alignment -->
         </div>
-    
-        
     </div>
     <!-- Free Postage Banner -->
     <div class="col-6 text-white d-flex flex-column align-items-end "><br>
         <h3>Free Postage on all Books!</h3>
         <small>* UK only</small>
     </div>
-    
-    
 </div>
 {% endblock page_header %}
 
 {% block content %}
-<div class="container-fluid px-5">
+<div class="container-fluid px-5" role="main">
     <div class="row">
         <div class="col-12 col-md-6 mt-4">
             <h4 class="text-dark d-inline align-middle">Filter: </h4><br>
-            <div class="btn-group filter-btn-margin">
+            <div class="btn-group filter-btn-margin" role="group" aria-label="Author filter">
                 <!-- Author filter -->
-                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="author-filter" aria-label="Filter by author">
                     {% if author_filter %}
                         {{ author_filter }}
                     {% else %}
                         Author
                     {% endif %}
                 </button>
-                <ul class="dropdown-menu dropdown-menu-scroll">
+                <ul class="dropdown-menu dropdown-menu-scroll" id="author-filter">
                     <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
                     {% for author in authors_list %}
                         <li><a class="dropdown-item" href="{% url 'store:storefront' %}?author={{author}}">{{author}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="btn-group filter-btn-margin">
+            <div class="btn-group filter-btn-margin" role="group" aria-label="Category filter">
                 <!-- Category filter -->
-                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="category-filter" aria-label="Filter by category">
                     {% if category_filter %}
                         {{ category_filter }}
                     {% else %}
                         Category
                     {% endif %}
                 </button>
-                <ul class="dropdown-menu dropdown-menu-scroll">
+                <ul class="dropdown-menu dropdown-menu-scroll" id="category-filter">
                     <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
                     {% for category in categories %}
                         <li><a class="dropdown-item" href="{% url 'store:storefront' %}?category={{category}}">{{category}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="btn-group filter-btn-margin">
+            <div class="btn-group filter-btn-margin" role="group" aria-label="Price filter">
                 <!-- Price filter -->
-                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="price-filter" aria-label="Filter by price">
                     {% if price_filter %}
                         {% if price_filter == 'asec' %}
                             Low to high
@@ -81,7 +77,7 @@
                         Price
                     {% endif %}
                 </button>
-                <ul class="dropdown-menu dropdown-menu-scroll">
+                <ul class="dropdown-menu dropdown-menu-scroll" id="price-filter">
                     <li><a class="dropdown-item" href="{% url 'store:storefront' %}">All</a></li>
                     <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=asec">Low to High</a></li>
                     <li><a class="dropdown-item" href="{% url 'store:storefront' %}?price=desc">High to Low</a></li>
@@ -94,8 +90,9 @@
         <!-- Search box -->
             <form method="GET" action=".">
                 <div class="input-group mb-3 mt-auto search-box">
-                    <input type="text" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
-                    <button class="btn custom-btn text-white" type="submit" id="button-addon2">Search</button>
+                    <label for="search-input" class="visually-hidden">Search</label>
+                    <input type="text" id="search-input" class="form-control rounded-pill-start" name="search" value="{{ request.GET.search }}" placeholder="Book or Author" aria-label="Search book or author" aria-describedby="button-addon2">
+                    <button class="btn custom-btn text-white" type="submit" id="button-addon2" aria-label="Search">Search</button>
                 </div>
             </form>
         </div>
@@ -103,19 +100,19 @@
     <div class="row d-flex flex-wrap justify-content-around">
     <!-- Display books as cards -->
         {% for product in page_obj %}
-            <div class="card mb-5" style="width: 18rem;">
-                <img src="{{ product.image.url }}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image">
+            <div class="card mb-5" style="width: 18rem;" role="article">
+                <img src="{{ product.image.url }}" class="card-img-top book-cover mx-auto d-block mt-3 mb-3" alt="Book cover image of {{ product.name }}">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ product.name }}</h5>
-                    <h5 class="card-subtitle"><strong>£{{ product.price }}</strong></h5>
+                    <h5 class="card-title"><strong>£{{ product.price }}</strong></h5>
                     <p class="card-text">{{ product.description|truncatechars:200 }}</p>
                     <p class="card-text"><strong>Author:</strong> {{ product.author }}</p>
                     <div class="btn-group-bottom mt-auto">
                         <form method="post" action="{% url 'basket:add-to-basket' product.id %}">
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <button class="btn custom-btn2 d-inline"  type="submit">Buy</button>
-                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn custom-btn d-inline" type="button">More..</button></a>
+                            <button class="btn custom-btn2 d-inline" type="submit" aria-label="Buy {{ product.name }}">Buy</button>
+                            <a href="{% url 'store:product-detail' product.pk %}" class="text-decoration-none"><button class="btn custom-btn d-inline" type="button" aria-label="More details about {{ product.name }}">More..</button></a>
                         </form>
                     </div>
                 </div>
@@ -125,17 +122,15 @@
     <div class="row mb-4">
     <!-- Pagination -->
         <div class="col-12 text-center">
-            <span class="step-links">
+            <span class="step-links" role="navigation" aria-label="Pagination">
                 {% if page_obj.has_previous %}
-                    <a class="custom-btn2 special-text" href="?page=1">&laquo; first</a>
-                    <a class="custom-btn2 special-text" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a class="custom-btn2 me-1 special-text" href="?page=1" aria-label="First page">&laquo; first</a>
+                    <a class="custom-btn2 me-1 special-text" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous page">previous</a>
                 {% endif %}
 
-                
-
                 {% if page_obj.has_next %}
-                    <a class="custom-btn2 special-text" href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a class="custom-btn2 special-text" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <a class="custom-btn2 me-1 special-text" href="?page={{ page_obj.next_page_number }}" aria-label="Next page">next</a>
+                    <a class="custom-btn2 special-text" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last page">last &raquo;</a>
                 {% endif %}
             </span>
         </div>

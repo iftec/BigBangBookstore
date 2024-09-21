@@ -4,12 +4,12 @@ from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserSignUpForm, AddressUpdateForm
 from django.db.models import Q
 from basket.forms import AddToBasketForm
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import logout, login, update_session_auth_hash
+from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+
 
 # StoreFront view
 class StoreFront(generic.ListView):
@@ -26,8 +26,10 @@ class StoreFront(generic.ListView):
         category_filter = self.request.GET.get('category', '')
 
         if search_query:
-            queryset = queryset.filter(Q(name__icontains=search_query) |
-                                       Q(author__icontains=search_query))
+            queryset = queryset.filter(
+                Q(name__icontains=search_query) |
+                Q(author__icontains=search_query)
+            )
 
         if price_filter:
             if price_filter == 'desc':
@@ -45,7 +47,7 @@ class StoreFront(generic.ListView):
         if category_filter:
             queryset = queryset.filter(
                 category__name__icontains=category_filter
-                )
+            )
 
         return queryset
 
@@ -55,7 +57,8 @@ class StoreFront(generic.ListView):
 
         # Get a unique list of authors
         authors_list = Product.objects.values_list(
-            'author', flat=True).distinct()
+            'author', flat=True
+        ).distinct()
         # Pass author list to context
         context['authors_list'] = authors_list.order_by('author')
         # Get list of categories and pass them into the context
@@ -111,9 +114,7 @@ class AccountRegister(generic.CreateView):
         if form.is_valid():
             # Save the user account and create a customer profile
             user = form.save()
-            customer = Customer.objects.create(
-                user=user,
-            )
+            customer = Customer.objects.create(user=user)
 
             # Get the order id form the form
             order_id_value = form['order_id'].value()
@@ -121,8 +122,9 @@ class AccountRegister(generic.CreateView):
             if order_id_value and order_id_value.isdigit():
                 # Grab the corresponding order
                 order = get_object_or_404(
-                    Order, id=form.cleaned_data['order_id'])
-                # Attached the customer to the order
+                    Order, id=form.cleaned_data['order_id']
+                )
+                # Attach the customer to the order
                 order.customer = customer
                 order.status = "Paid"
                 order.save()
@@ -133,7 +135,8 @@ class AccountRegister(generic.CreateView):
             return redirect('/')
         else:
             messages.error(
-                request, 'There was an issue registering. Please try again')
+                request, 'There was an issue registering. Please try again'
+            )
         return render(request, self.template_name, {'form': form})
 
     def get_success_url(self):
@@ -145,15 +148,16 @@ def AccountLogOut(request):
     logout(request)
     return redirect('/')
 
+
 # New account_page view for managing user account
 @login_required
 def account_page(request):
     # Ensure password_form is always defined
     password_form = PasswordChangeForm(request.user)
     # Initialize address form with current customer data
-    address_form = AddressUpdateForm(user=request.user, instance=request.user.customer)
-
-
+    address_form = AddressUpdateForm(
+        user=request.user, instance=request.user.customer
+    )
     if request.method == 'POST':
         if 'change_password' in request.POST:
             password_form = PasswordChangeForm(request.user, request.POST)
@@ -161,23 +165,36 @@ def account_page(request):
                 user = password_form.save()
                 # Log out the user after password change
                 logout(request)
-                messages.success(request, 'Your password was successfully updated! Please log in again.')
+                messages.success(
+                    request,
+                    'Your password was successfully updated! '
+                    'Please log in again.'
+                )
                 return redirect('login')
             else:
-                messages.error(request, 'The password you entered is incorrect.')
+                messages.error(
+                    request, 'The password you entered is incorrect.'
+                )
         elif 'update_address' in request.POST:
-            address_form = AddressUpdateForm(request.POST, user=request.user, instance=request.user.customer)
+            address_form = AddressUpdateForm(
+                request.POST, user=request.user, instance=request.user.customer
+            )
             if address_form.is_valid():
                 address_form.save()
-                messages.success(request, 'Your details were successfully updated.')
-                # return redirect('account_page')           
+                messages.success(
+                    request, 'Your details were successfully updated.'
+                )
             else:
-                messages.error(request, 'Please correct the error below.')
+                messages.error(
+                    request, 'Please correct the error below.'
+                )
         elif 'delete_account' in request.POST:
             request.user.delete()
-            messages.success(request, 'Your account was successfully deleted.')
+            messages.success(
+                request, 'Your account was successfully deleted.'
+            )
             return redirect('home')
-        
+
     if request.method == 'GET':
         user = request.user
         orders = Order.objects.filter(customer=user.customer)

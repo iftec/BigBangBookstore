@@ -11,4 +11,3 @@ urlpatterns = [
     path('<int:order_id>/cancel/', views.cancelled_view, name="cancelled"),
     path('stripe_webhook/', views.stripe_webhook, name="stripe-webhook"),
 ]
-

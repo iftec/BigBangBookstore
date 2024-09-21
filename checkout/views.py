@@ -1,7 +1,5 @@
 import stripe
-import json
 from django.shortcuts import get_object_or_404, redirect, reverse, render
-from django.views.generic import TemplateView
 from decouple import config
 from basket.models import BasketItem, Basket
 from store.models import Product, Order, OrderItem
@@ -17,7 +15,7 @@ stripe.api_key = config('STRIPE_SECRET_KEY')
 def create_checkout_session(request, pk):
     # Set empty item dictionary for passing to stripe
     items = []
-    # Set initial zero order amount 
+    # Set initial zero order amount
     order_amount = 0
     # Get basket from database
     basket = get_object_or_404(Basket, id=pk)
@@ -52,7 +50,7 @@ def create_checkout_session(request, pk):
         # Calculate the order amount while in the for loop
         line_amount = product.price * item.quantity
         order_amount = order_amount + line_amount
-    # Update and save the final order amount 
+    # Update and save the final order amount
     order.order_amount = order_amount
     order.save()
     # Create the checkout session
@@ -75,7 +73,7 @@ def create_checkout_session(request, pk):
 def create_guest_checkout_session(request):
     # Set empty item dictionary for passing to stripe
     items = []
-    # Set initial zero order amount 
+    # Set initial zero order amount
     order_amount = 0
     # Get basket from session data
     basket = request.session.get('basket', {})
@@ -108,7 +106,7 @@ def create_guest_checkout_session(request):
         # Calculate the order amount while in the for loop
         line_amount = product.price * quantity
         order_amount = order_amount + line_amount
-    # Update and save the final order amount 
+    # Update and save the final order amount
     order.order_amount = order_amount
     order.save()
     # Create the checkout session
@@ -198,7 +196,8 @@ def success_view(request, order_id):
     request.session.pop('basket', None)
     # Grab the order details
     order = get_object_or_404(Order, id=order_id)
-    order_address = f"{order.ship_street} {order.ship_city} {order.ship_postcode}"
+    order_address = f"{order.ship_street} {order.ship_city} {
+                                        order.ship_postcode}"
     order_items = OrderItem.objects.filter(order_id=order.id)
     order_details = {
         'order_id': order.id,

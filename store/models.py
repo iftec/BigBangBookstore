@@ -22,8 +22,7 @@ class Customer(models.Model):
 # Base product details for each book
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(default='', blank=True,
-                                   null=True)
+    description = models.TextField(default='', blank=True, null=True)
     price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
     image = models.ImageField(upload_to='uploads/products/')
     author = models.CharField(max_length=100)
@@ -54,7 +53,8 @@ class Order(models.Model):
                               choices=ORDER_STATUS)
     uuid = models.CharField(default=uuid.uuid4, editable=False)
     reference = models.CharField(max_length=50, null=True, blank=True)
-    order_amount = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    order_amount = models.DecimalField(default=0, decimal_places=2,
+                                       max_digits=6)
     ship_name = models.CharField(max_length=50)
     ship_phone = models.CharField(max_length=20)
 

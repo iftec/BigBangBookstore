@@ -2,7 +2,14 @@
 # The Big Bang Bookstore
 
 ## Site Overview
-An online bookstore specialising in books that deal with space, quantum physics, time, reality, and other mysteries of the universe.
+- An online bookstore specialising in books that deal with space, quantum physics, time, reality, and other mysteries of the universe.
+- The site is designed to be easy to navigate and use, with a focus on providing a seamless shopping experience for customers.
+- The project can be broken down into several applications, each with its own purpose and functionality.
+ - The main application is the 'bigbangbookstore' application, which contains the core functionality of the site.
+ - The 'stores' application is used to manage user profiles, authentication and orders.
+ - The 'checkout' application is used to handle the checkout process and payment processing.
+ - The 'basket' application is used to manage the user's shopping basket.
+
 
 **Live Site:** [View the live site here](#)
 
@@ -25,6 +32,8 @@ An online bookstore specialising in books that deal with space, quantum physics,
 - [Testing Phase](#testing-phase)
   - [During Development Testing](#during-development-testing)
   - [Manual Testing](#manual-testing)
+  - [Testing User Stories](#testing-user-stories)
+  - [Automated Testing](#automated-testing)
   - [Bugs & Fixes](#bugs--fixes)
 - [Deployment](#deployment)
   - [Setting Up Your Local Development Environment](#setting-up-your-local-development-environment)
@@ -394,7 +403,6 @@ Used to fix grammar errors across the project.
 * W3C CSS Validation Service
 
 
-
 ### **Manual Testing:**
 * Google Chrome
 * Microsoft Edge
@@ -406,6 +414,7 @@ Used to fix grammar errors across the project.
 * Galaxy S20 FE
 * Galaxy Flip 3
 * Galaxy S21 Ultra
+
 
 ### **Testing User Stories**
 As a user, I want to...
@@ -433,6 +442,7 @@ As a user, I want to...
 ### Automated Testing 
 Automated Testing 
 Using Django's testing framework I carried out several unit tests on the key operations of the site, such as Authentication and CRUD functions for each module. These tests can be ran under local deployment using the relevant python command for your cli followed by manage.py tests. Each modules tests are located in their respective tests.py file.
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/testing_py.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//testing_py.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 ### ***Bugs and Fixes:***
 * Problems caused by an accidental branch and following merges.
@@ -441,8 +451,13 @@ Using Django's testing framework I carried out several unit tests on the key ope
     I have spoken to my course tutor Manuel and he has confirmed that this will be ok.
     - As it was, I had fixed all the issues on my last merge, but at that point, I was unaware of this and wanted to confirm the issue was not on my machine.
 
+* Some issues with Bootstrap overriding my CSS.
+    In some cases, using !important to override the Bootstrap styling worked, but in others, it did not, so Bootstrap was removed for those elements and custom CSS was used instead.
+
+* Chat GTP was correct and helped about 50% of the time, the other 50% it would lose the plot and make things worse. However it did help when explaining code and as such made it easier to fix some of the silly  mistakes, it also helped with quickly re styling some elements.
+
 * Still needs loads more styling.
-    Chat GTP was correct and helped about 50% of the time, the other 50% it would make things worse
+
 
 
 #### **Validators**

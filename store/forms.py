@@ -3,9 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from store.models import Customer  # Import Customer model
 
+
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class UserSignUpForm(UserCreationForm):
     email = forms.EmailField()
@@ -23,7 +25,8 @@ class UserSignUpForm(UserCreationForm):
         if full_name:
             split_name = full_name.split(' ', 1)
             self.cleaned_data['first_name'] = split_name[0]
-            self.cleaned_data['last_name'] = split_name[1] if len(split_name) > 1 else ''
+            self.cleaned_data['last_name'] = split_name[1] if len(
+                split_name) > 1 else ''
 
         return self.cleaned_data
 
@@ -38,6 +41,8 @@ class UserSignUpForm(UserCreationForm):
         return user
 
 # added for update address
+
+
 class AddressUpdateForm(forms.ModelForm):
     # Create a custom field for email not directly tied to the Customer model
     email = forms.EmailField(
@@ -50,12 +55,18 @@ class AddressUpdateForm(forms.ModelForm):
         model = Customer
         fields = ['email', 'phone', 'street', 'address_2', 'city', 'postcode']
         widgets = {
-            'street': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}),
-            'address_2': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}), 
-            'city': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}),
-            'postcode': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}),
-            'phone': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}),
-            'email': forms.TextInput(attrs={'style': 'background-color: #D8C2E3;'}),
+            'street': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}),
+            'address_2': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}), 
+            'city': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}),
+            'postcode': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}),
+            'phone': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}),
+            'email': forms.TextInput(
+                attrs={'style': 'background-color: #D8C2E3;'}),
         }
         labels = {
             'street': 'House & Street',
