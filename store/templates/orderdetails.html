@@ -16,11 +16,11 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 pt-3 text-center">
             <h2 class="mb-4">Order Details</h2>
-            <h3>Order Number: {{ order.id }}</h3>
-            <h3>Order Date: {{ order.date }}</h3>
-            <h3>Total Amount: £{{ order.order_amount }}</h3>
-            <h3>Shipping Address: {{ order.ship_name }}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</h3>
-            <h3>Payment Reference: {{ order.reference }}</h3>
+            <p><strong>Order Number: {{ order.id }}</strong></p>
+            <p><strong>Order Date: {{ order.date }}</strong></p>
+            <p><strong>Total Amount: £{{ order.order_amount }}</strong></p>
+            <p><strong>Shipping Address: {{ order.ship_name }}, {{ order.ship_street }}, {{ order.ship_city }}, {{ order.ship_postcode }}</strong></p>
+            <p><strong>Payment Reference: {{ order.reference }}</strong></p>
 
             <h3 class="mt-4">Items:</h3>
             <table class="table1-bg w-100 p-3 my-3" aria-label="Order items table">
@@ -41,7 +41,6 @@
                     {% for item in order_items %}
                     <tr class="align-middle row-color-2">
                         <td class="text-center">
-                            <img src="{{ item.product.image.url }}" class="img-responsive img-basket mt-3" alt="Image of {{ item.item }}">
                             <p></p>
                         </td>
                         <td class="text-start">{{ item.item }}</td>
