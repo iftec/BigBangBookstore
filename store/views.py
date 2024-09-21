@@ -193,7 +193,7 @@ def account_page(request):
             messages.success(
                 request, 'Your account was successfully deleted.'
             )
-            return redirect('home')
+            return redirect('store:storefront')
 
     if request.method == 'GET':
         user = request.user

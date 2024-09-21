@@ -63,7 +63,7 @@
         </form>
 
         <h3 id="delete_account" class="mb-3 text-start">Delete Account</h3>
-        <form method="post" class="text-start">
+        <form method="post" class="text-start" onsubmit="return confirmDelete();">
             {% csrf_token %}
             <button type="submit" name="delete_account" class="btn btn-danger" aria-label="Delete Account">Delete Account</button>
         </form>

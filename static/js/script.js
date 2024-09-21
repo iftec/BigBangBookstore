@@ -58,3 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.head.appendChild(link);
     });
 });
+
+function confirmDelete() {
+    return confirm("Are you sure you want to delete your account? This action cannot be undone.");
+}
