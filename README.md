@@ -445,7 +445,7 @@ Using Django's testing framework I carried out several unit tests on the key ope
 
 ### ***Bugs and Known Issues:***
 * Problems caused by an accidental branch and following merges.
-    The merges of the branches kept causing me errors, not wanting to do a force merge and lose my history in GitHub, I had someone else to try a couple of uploads to see if the issue was my end.
+    The merges of the branches kept causing me errors, not wanting to do a force merge and lose my history in GitHub, I had someone else try a couple of uploads to see if the issue was my end.
     As such, two uploads in my GitHub repo show being uploaded by isdanryan.
     I have spoken to my course tutor Manuel and he has confirmed that this will be ok.
     - As it was, I had fixed all the issues on my last merge, but at that point, I was unaware of this and wanted to confirm the issue was not on my machine.
@@ -454,6 +454,8 @@ Using Django's testing framework I carried out several unit tests on the key ope
     In some cases, using !important to override the Bootstrap styling worked, but in others, it did not, so Bootstrap was removed for those elements and custom CSS was used instead.
 
 * Chat GTP was correct and helped about 50% of the time, the other 50% it would lose the plot and make things worse. However it did help when explaining code and as such made it easier to fix some of the silly  mistakes, it also helped with quickly re styling some elements.
+
+* I had to restyle and change the spacing of some of my Icons to conform to accesabilty standards.
 
 * As far as I'm aware there are now no bugs left in the code, had plenty of typo's and small errors that I had to go back and fix, but nothing major.
 
