@@ -402,7 +402,6 @@ Used to fix grammar errors across the project.
 * W3C Markup Validation Service
 * W3C CSS Validation Service
 
-
 ### **Manual Testing:**
 * Google Chrome
 * Microsoft Edge
@@ -425,7 +424,7 @@ As a user, I want to...
 * Register with the site.
     * The user can register their details with the site, or log in if they already have an account.
 * Login to the site.
-    * The user can log in to the site using their username or email and password.
+    * The user can log in to the site using their email and password.
 * Log out of the site.
     * The user can log out of the site at any time.
 * View my account and change details.
@@ -444,7 +443,7 @@ Automated Testing
 Using Django's testing framework I carried out several unit tests on the key operations of the site, such as Authentication and CRUD functions for each module. These tests can be ran under local deployment using the relevant python command for your cli followed by manage.py tests. Each modules tests are located in their respective tests.py file.
 <p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/testing_py.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//testing_py.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
-### ***Bugs and Fixes:***
+### ***Bugs and Known Issues:***
 * Problems caused by an accidental branch and following merges.
     The merges of the branches kept causing me errors, not wanting to do a force merge and lose my history in GitHub, I had someone else to try a couple of uploads to see if the issue was my end.
     As such, two uploads in my GitHub repo show being uploaded by isdanryan.
@@ -455,6 +454,8 @@ Using Django's testing framework I carried out several unit tests on the key ope
     In some cases, using !important to override the Bootstrap styling worked, but in others, it did not, so Bootstrap was removed for those elements and custom CSS was used instead.
 
 * Chat GTP was correct and helped about 50% of the time, the other 50% it would lose the plot and make things worse. However it did help when explaining code and as such made it easier to fix some of the silly  mistakes, it also helped with quickly re styling some elements.
+
+* As far as I'm aware there are now no bugs left in the code, had plenty of typo's and small errors that I had to go back and fix, but nothing major.
 
 * Still needs loads more styling.
 
