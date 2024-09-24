@@ -368,6 +368,15 @@ button, .btn, .special-text {
 }
 
 /* Responsive adjustments for small screens */
+@media (max-width: 560px) {
+    .welcome-text {
+        display: none;
+    }
+    .free-postage {
+        margin-top: 30px; 
+    }
+}
+
 @media (max-width: 380px) {
     .footer .row {
         text-align: center;
