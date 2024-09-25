@@ -94,7 +94,7 @@ html, body {
 }
 
 .inputQty-width {
-    width: 60px; /* Adjust width as needed */
+    width: 60px; 
 }
 
 .table-bg th:nth-child(3), .table-bg td:nth-child(3) {
@@ -341,7 +341,7 @@ button, .btn, .special-text {
 }
 
 .additional-text {
-    display: none; /* Hide by default */
+    display: none; 
 }
 
 /* Container within the footer */
@@ -376,59 +376,81 @@ button, .btn, .special-text {
     .welcome-text {
         display: none;
     }
+    .basket-header h2,
+    .free-postage-header h3 {
+        font-size: .8rem !important; 
+    }
     .free-postage {
         margin-top: 30px; 
     }
     .additional-text {
-        display: block; /* Show on screens less than 560px */
+        display: block; 
     }
 }
 
 @media (max-width: 460px) {
     .filter-btn-margin {
-        margin-left: 2px !important; /* Further reduce margin */
-        margin-right: 5px !important; /* Further reduce margin */
-        margin-bottom: 0 !important; /* Remove bottom margin */
+        margin-left: 2px !important; 
+        margin-right: 5px !important;
+        margin-bottom: 0 !important;
     }
 
     .btn.custom-btn {
-        padding: 0.25rem 0.5rem !important; /* Further adjust padding */
-        font-size: 0.75rem !important; /* Further adjust font size */
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
     }
 
     .btn.custom-btn2 {
-        padding: 0.25rem 0.5rem !important; /* Further adjust padding */
-        font-size: 0.75rem !important; /* Further adjust font size */
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
     }
 
     .btn-group {
-        display: flex !important; /* Ensure buttons stay on the same line */
-        flex-wrap: nowrap !important; /* Ensure buttons stay on the same line */
+        display: flex !important; 
+        flex-wrap: nowrap !important;
     }
 
     .btn-group .btn {
-        flex: 1 !important; /* Make buttons take equal space */
-        min-width: 0 !important; /* Allow buttons to shrink */
+        flex: 1 !important;
+        min-width: 0 !important; 
     }
 
     .search-box {
-        width: 100% !important; /* Ensure search box takes full width */
+        width: 100% !important; 
     }
 
     .input-group {
-        flex-wrap: nowrap !important; /* Ensure input and button stay on the same line */
+        flex-wrap: nowrap !important;
     }
 
     .input-group .form-control {
-        flex: 1 1 auto !important; /* Allow input to take available space */
+        flex: 1 1 auto !important; 
     }
 
     .input-group .btn {
-        flex: 0 0 auto !important; /* Prevent button from shrinking */
+        flex: 0 0 auto !important; 
+    }
+
+    .col-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .basket-header h2,
+    .free-postage-header h3 {
+        font-size: 1.25rem; /* Adjust the font size as needed */
+    }
+}
+
+@media (max-width: 360px) {
+    .img-basket {
+        display: none; /* Hide the book image */
     }
 }
 
 @media (max-width: 380px) {
+    .img-basket {
+        display: none;
     .footer .row {
         text-align: center;
         flex-direction: column;
