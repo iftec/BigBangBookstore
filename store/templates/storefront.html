@@ -16,15 +16,19 @@
     <div class="col-6 text-white d-flex flex-column align-items-end free-postage"><br>
         <h3>Free Postage on all Books!</h3>
         <small>* UK only</small>
+        <div class="mt-auto">
+            <p class="additional-text">Your journey into the cosmos starts here. Enjoy our curated selection of books and embark on an adventure through space and time!</p>
+        </div>
     </div>
 </div>
 {% endblock page_header %}
 
 {% block content %}
-<div class="container-fluid px-5" role="main">
+<div class="container-fluid px-5 mt-2" role="main">
+    <h4 class="text-dark d-inline align-middle">Filter: </h4>
     <div class="row">
-        <div class="col-12 col-md-6 mt-4">
-            <h4 class="text-dark d-inline align-middle">Filter: </h4><br>
+        <div class="col-12 col-md-8 mt-2 d-flex flex-wrap align-items-center">
+            
             <div class="btn-group filter-btn-margin" role="group" aria-label="Author filter">
                 <!-- Author filter -->
                 <button type="button" class="btn custom-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-controls="author-filter" aria-label="Filter by author">
@@ -85,7 +89,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-md-6 text-white d-flex flex-column align-items-end mb-2 mt-4">
+        <div class="col-12 col-md-4 text-white d-flex flex-column align-items-end mb-2 mt-2">
             <!-- Search box -->
             <form method="GET" action=".">
                 <div class="input-group mb-3 mt-auto search-box">
@@ -95,6 +99,7 @@
                 </div>
             </form>
         </div>
+    </div>
     </div>
     <div class="row d-flex flex-wrap justify-content-around">
         <!-- Display books as cards -->

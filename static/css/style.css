@@ -340,6 +340,10 @@ button, .btn, .special-text {
     margin-top: 5px;
 }
 
+.additional-text {
+    display: none; /* Hide by default */
+}
+
 /* Container within the footer */
 .footer .container {
     max-width: 1200px;
@@ -374,6 +378,53 @@ button, .btn, .special-text {
     }
     .free-postage {
         margin-top: 30px; 
+    }
+    .additional-text {
+        display: block; /* Show on screens less than 560px */
+    }
+}
+
+@media (max-width: 460px) {
+    .filter-btn-margin {
+        margin-left: 2px !important; /* Further reduce margin */
+        margin-right: 5px !important; /* Further reduce margin */
+        margin-bottom: 0 !important; /* Remove bottom margin */
+    }
+
+    .btn.custom-btn {
+        padding: 0.25rem 0.5rem !important; /* Further adjust padding */
+        font-size: 0.75rem !important; /* Further adjust font size */
+    }
+
+    .btn.custom-btn2 {
+        padding: 0.25rem 0.5rem !important; /* Further adjust padding */
+        font-size: 0.75rem !important; /* Further adjust font size */
+    }
+
+    .btn-group {
+        display: flex !important; /* Ensure buttons stay on the same line */
+        flex-wrap: nowrap !important; /* Ensure buttons stay on the same line */
+    }
+
+    .btn-group .btn {
+        flex: 1 !important; /* Make buttons take equal space */
+        min-width: 0 !important; /* Allow buttons to shrink */
+    }
+
+    .search-box {
+        width: 100% !important; /* Ensure search box takes full width */
+    }
+
+    .input-group {
+        flex-wrap: nowrap !important; /* Ensure input and button stay on the same line */
+    }
+
+    .input-group .form-control {
+        flex: 1 1 auto !important; /* Allow input to take available space */
+    }
+
+    .input-group .btn {
+        flex: 0 0 auto !important; /* Prevent button from shrinking */
     }
 }
 
