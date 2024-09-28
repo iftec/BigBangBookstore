@@ -437,6 +437,8 @@ As a user, I want to...
     The user can search the database by name or title for books.
 * Delete my account
     * The user can delete their account from the accounts page.
+* Ensure my payment details are secure.
+    * The Payment system uses Stripe to ensure the payment details are secure.
 
 ### Automated Testing 
 Automated Testing 
@@ -560,7 +562,8 @@ Additional Notes
 
   python manage.py collectstatic
 
-- Environment Variables: Ensure you set up any required environment variables, such as database credentials, secret keys, etc. You can use a .env file and the python-decouple package to manage these variables.
+- Environment Variables: Ensure you set up any required environment variables, such as database credentials, secret keys, etc. 
+- You can use a .env file and the python-decouple package to manage these variables.
 - You may also need to change debug settings to True in settings.py to enable debugging.
 - You may also need to change allowed hosts in settings.py to allow access from your domain name.
 
