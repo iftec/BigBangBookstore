@@ -575,7 +575,7 @@ Additional Notes
 * https://learn.codeinstitute.net/
     * Used for reference from the many examples shown on the course.
 * https://chat.openai.com/
-    * Used for creating a search section of the site.
+    * Used to help in the creation of search section of the site.
     * Used to check the format of the code for the site.
     * Used to analyse the some of code issues for the site.
     * Used to create some of the Python functions.
