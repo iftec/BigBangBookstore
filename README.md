@@ -36,16 +36,9 @@
   - [Automated Testing](#automated-testing)
   - [Bugs & Fixes](#bugs--fixes)
 - [Deployment](#deployment)
-  - [Setting Up Your Local Development Environment](#setting-up-your-local-development-environment)
-  - [Set Up a Virtual Environment](#set-up-a-virtual-environment)
-  - [Install Dependencies](#install-dependencies)
-  - [Set Up the Database](#set-up-the-database)
-  - [Run Database Migrations](#run-database-migrations)
-  - [Create a Superuser (Optional)](#create-a-superuser-optional)
-  - [Run the Development Server](#run-the-development-server)
-  - [Deploying Changes to GitHub](#deploying-changes-to-github)
-- [Future Enhancements](#future-enhancements)
+- [Future Features](#future-features)
 - [Credits](#credits)
+
 
 ## User Experience (UX)
 
@@ -461,10 +454,6 @@ Using Django's testing framework I carried out several unit tests on the key ope
 
 * As far as I'm aware there are now no bugs left in the code, had plenty of typo's and small errors that I had to go back and fix, but nothing major.
 
-* Still needs loads more styling.
-* Still need to setup mailserver for sending conformation emails.
-
-
 
 #### **Validators**
 The following validators were used during final testing to ensure all code was up to standards;
@@ -567,6 +556,10 @@ Additional Notes
 - You can use a .env file and the python-decouple package to manage these variables.
 - You may also need to change debug settings to True in settings.py to enable debugging.
 - You may also need to change allowed hosts in settings.py to allow access from your domain name.
+
+## **Future Features**
+* Still needs loads more styling.
+* Setup mailserver for sending conformation emails.
 
 ## **Credits**
 * https://www.bootstrap.com
