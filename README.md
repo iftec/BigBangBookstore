@@ -462,6 +462,7 @@ Using Django's testing framework I carried out several unit tests on the key ope
 * As far as I'm aware there are now no bugs left in the code, had plenty of typo's and small errors that I had to go back and fix, but nothing major.
 
 * Still needs loads more styling.
+* Still need to setup mailserver for sending conformation emails.
 
 
 
