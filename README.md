@@ -1,5 +1,6 @@
 
 # The Big Bang Bookstore
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="https://github.com/iftec/bigbangbookstore/blob/main/documentation/responsive_layout.webp?raw=true"><img src="https://github.com/iftec/bigbangbookstore/blob/main/documentation//responsive_layout.webp?raw=true" alt="layouts" style="max-width: 100%;"></a></p>
 
 ## Site Overview
 - An online bookstore specialising in books that deal with space, quantum physics, time, reality, and other mysteries of the universe.
